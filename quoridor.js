@@ -136,54 +136,55 @@ class Game {
         }
         return won;
     }
+    serialize(pos){
+        `${pos[0]},${pos[1]}`;   
+    }
+
+
+    moveUp(pawnPosition){
+        let playerTurn = [...this.turn];
+        let movedUp = this.movePawn([pawnPosition[0] + 2, pawnPosition[1]]); // These might be reversed
+        this.turn = playerTurn;
+        return {valid: movedUp.success, location: [pawnPosition[0] + 2, pawnPosition[1]]};
+    }
+    moveLeft(pawnPosition){
+        let playerTurn = [...this.turn];
+        let movedLeft = this.movePawn([pawnPosition[0], pawnPosition[1] - 2]); // These might be reversed
+        this.turn = playerTurn;
+        return  {valid: movedLeft.success, location: [pawnPosition[0], pawnPosition[1] - 2]};
+    }
+    moveRight(pawnPosition){
+        let playerTurn = [...this.turn];
+        let movedRight = this.movePawn([pawnPosition[0], pawnPosition[1] + 2]); // These might be reversed
+        this.turn = playerTurn;
+        return  {valid: movedRight.success, location: [pawnPosition[0], pawnPosition[1] + 2]};
+    }
+    moveDown(pawnPosition){
+        let playerTurn = [...this.turn];
+        let movedDown = this.movePawn([pawnPosition[0] - 2, pawnPosition[1]]); // These might be reversed
+        this.turn = playerTurn;
+        return  {valid: movedDown.success, location: [pawnPosition[0] - 2, pawnPosition[1]]};
+    }
+    moveAllDirections(pawnPosition, visitedSquares){
+        visitedSquares.add(this.serialize(pawnPosition));
+        let up = this.moveUp(pawnPosition);
+        let down = this.moveDown(pawnPosition);
+        let right = this.moveRight(pawnPosition);
+        let left = this.moveLeft(pawnPosition);
+        let results = [up, down, right, left];
+        return results;
+    }
 
     pathFinder(pawnPosition) {
         let visitedSquares = new Set();
         let queue = [pawnPosition];
-        const serialize = (pos) => `${pos[0]},${pos[1]}`;
-
-
-        const moveUp = (pawnPosition) => {
-            let playerTurn = [...this.turn];
-            let movedUp = this.movePawn([pawnPosition[0] + 2, pawnPosition[1]]); // These might be reversed
-            this.turn = playerTurn;
-            return {valid: movedUp.success, location: [pawnPosition[0] + 2, pawnPosition[1]]};
-        }
-        const moveLeft = (pawnPosition) => {
-            let playerTurn = [...this.turn];
-            let movedLeft = this.movePawn([pawnPosition[0], pawnPosition[1] - 2]); // These might be reversed
-            this.turn = playerTurn;
-            return  {valid: movedLeft.success, location: [pawnPosition[0], pawnPosition[1] - 2]};
-        }
-        const moveRight = (pawnPosition) => {
-            let playerTurn = [...this.turn];
-            let movedRight = this.movePawn([pawnPosition[0], pawnPosition[1] + 2]); // These might be reversed
-            this.turn = playerTurn;
-            return  {valid: movedRight.success, location: [pawnPosition[0], pawnPosition[1] + 2]};
-        }
-        const moveDown = (pawnPosition) => {
-            let playerTurn = [...this.turn];
-            let movedDown = this.movePawn([pawnPosition[0] - 2, pawnPosition[1]]); // These might be reversed
-            this.turn = playerTurn;
-            return  {valid: movedDown.success, location: [pawnPosition[0] - 2, pawnPosition[1]]};
-        }
-        const moveAllDirections = (pawnPosition) => {
-            visitedSquares.add(serialize(pawnPosition));
-            let up = moveUp(pawnPosition);
-            let down = moveDown(pawnPosition);
-            let right = moveRight(pawnPosition);
-            let left = moveLeft(pawnPosition);
-            let results = [up, down, right, left];
-            return results;
-
-        }
 
         const isWinningRow = (pos) => {
             return this.turn === 'white' ? pos[0] === 16 : pos[0] === 0;
         };
         while (queue.length > 0){
             const current = queue.shift();
-            const key = serialize(current);
+            const key = this.serialize(current);
 
             if(visitedSquares.has(key)) continue;
             visitedSquares.add(key);
@@ -192,9 +193,9 @@ class Game {
                 return true;
             }
 
-            const results = moveAllDirections(current);
+            const results = this.moveAllDirections(current, visitedSquares);
             for(const result of results){
-                if(result.valid && !visitedSquares.has(serialize(result.location))) {
+                if(result.valid && !visitedSquares.has(this.serialize(result.location))) {
                     queue.push(result.location);
                 }
             }
