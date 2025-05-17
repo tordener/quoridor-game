@@ -211,6 +211,52 @@ describe("Game movement", () => {
         expect(game.turn).toBe("white");
     });
 
+	test("Should not allow pawn to move more than one space in a valid direction", () => {
+		const resultMoveTwoSpacesForward = game.movePawn([4,8]);
+		expect(resultMoveTwoSpacesForward.success).toBe(false);
+		expect(game.whitePos).toEqual([0,8]);
+		expect(game.turn).toBe('white');
+		const resultMoveTwoSpacesLeft = game.movePawn([0,4]);
+		expect(resultMoveTwoSpacesLeft.success).toBe(false);
+		expect(game.turn).toBe('white');
+		expect(game.whitePos).toEqual([0,8]);
+		const resultMoveTwoSpacesRight = game.movePawn([0,12]);
+		expect(resultMoveTwoSpacesRight.success).toBe(false);
+		expect(game.turn).toBe('white');
+		expect(game.whitePos).toEqual([0,8]);
+		game.whitePos = [4,8];
+		game.board[0][8].occupiedBy = null;
+		game.board[4][8].occupiedBy = 'white';
+		const resultMoveTwoSpacesDown = game.movePawn([0,8]);
+		expect(resultMoveTwoSpacesDown.success).toBe(false);
+		expect(game.turn).toBe('white');
+		expect(game.whitePos).toEqual([4,8]);
+	});
+
+	test("Should not allow a pawn to move diagonally", () => {
+		const resultMovedDiagonallyUpRight = game.movePawn([2,10]);
+		expect(resultMovedDiagonallyUpRight.success).toBe(false);
+		expect(game.turn).toBe('white');
+		expect(game.whitePos).toEqual([0,8]);
+		const resultMovedDiagonallyUpLeft = game.movePawn([2,6]);
+		expect(resultMovedDiagonallyUpLeft.success).toBe(false);
+		expect(game.turn).toBe('white');
+		expect(game.whitePos).toEqual([0,8]);
+		game.whitePos = [2,8];
+		game.board[0][8].occupiedBy = null;
+		game.board[2][8].occupiedBy = 'white';
+		const resultMovedDiagonallyDownLeft = game.movePawn([0,6]);
+		expect(resultMovedDiagonallyDownLeft.success).toBe(false);
+		expect(game.turn).toBe('white');
+		expect(game.whitePos).toEqual([2,8]);
+		const resultMovedDiagonallyDownRight = game.movePawn([0,10]);
+		expect(resultMovedDiagonallyDownRight.success).toBe(false);
+		expect(game.turn).toBe('white');
+		expect(game.whitePos).toEqual([2,8]);
+
+		
+	});
+
     test("Should declare white as winner when reaching black's edge of the board", () => {
         game.whitePos = [14, 10];
         game.board[0][8].occupiedBy = null;
@@ -231,4 +277,61 @@ describe("Game movement", () => {
         expect(resultBlackReachesBlackSide.success).toBe(true);
         expect(game.blackWon).toBe(true);
     });
+
+	test("Should detect white has no valid path to black's side of the board", () => {
+		/*
+			* Solid horizontal wall
+		*/
+
+		function straightWall(){
+			for(let a = 0; a < 17; a++){
+				game.board[1][a].occupiedBy = 'wall';
+			}
+		}
+
+		const resultCheckPath = game.pathFinder(game.whitePos);
+		expect(resultCheckPath).toBe(false);
+	});
+		test("Should detect black has no valid path to white's side of the board", () => {
+		/*
+			* Solid horizontal wall
+		*/
+
+		function straightWall(){
+			for(let a = 0; a < 17; a++){
+				game.board[1][a].occupiedBy = 'wall';
+			}
+		}
+		game.turn = 'black';
+		const resultCheckPath = game.pathFinder(game.blackPos);
+		expect(resultCheckPath).toBe(false);
+	});
+		test("Should detect white has a valid path to black's side of the board", () => {
+		/*
+			* Solid horizontal wall
+		*/
+
+		function straightWall(){
+			for(let a = 0; a < 15; a++){
+				game.board[1][a].occupiedBy = 'wall';
+			}
+		}
+
+		const resultCheckPath = game.pathFinder(game.whitePos);
+		expect(resultCheckPath).toBe(false);
+	});
+		test("Should detect black has a valid path to white's side of the board", () => {
+		/*
+			* Solid horizontal wall
+		*/
+
+		function straightWall(){
+			for(let a = 0; a < 15; a++){
+				game.board[1][a].occupiedBy = 'wall';
+			}
+		}
+		game.turn = 'black';
+		const resultCheckPath = game.pathFinder(game.blackPos);
+		expect(resultCheckPath).toBe(false);
+	});
 });

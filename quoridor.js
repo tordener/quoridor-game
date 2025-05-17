@@ -1,3 +1,4 @@
+const fs = require('fs');
 /**
  * Represents a game of Quoridor.
  */
@@ -136,11 +137,77 @@ class Game {
         return won;
     }
 
+    pathFinder(pawnPosition) {
+        let visitedSquares = new Set();
+        let queue = [pawnPosition];
+        const serialize = (pos) => `${pos[0]},${pos[1]}`;
+
+
+        const moveUp = (pawnPosition) => {
+            let playerTurn = [...this.turn];
+            let movedUp = this.movePawn([pawnPosition[0] + 2, pawnPosition[1]]); // These might be reversed
+            this.turn = playerTurn;
+            return {valid: movedUp.success, location: [pawnPosition[0] + 2, pawnPosition[1]]};
+        }
+        const moveLeft = (pawnPosition) => {
+            let playerTurn = [...this.turn];
+            let movedLeft = this.movePawn([pawnPosition[0], pawnPosition[1] - 2]); // These might be reversed
+            this.turn = playerTurn;
+            return  {valid: movedLeft.success, location: [pawnPosition[0], pawnPosition[1] - 2]};
+        }
+        const moveRight = (pawnPosition) => {
+            let playerTurn = [...this.turn];
+            let movedRight = this.movePawn([pawnPosition[0], pawnPosition[1] + 2]); // These might be reversed
+            this.turn = playerTurn;
+            return  {valid: movedRight.success, location: [pawnPosition[0], pawnPosition[1] + 2]};
+        }
+        const moveDown = (pawnPosition) => {
+            let playerTurn = [...this.turn];
+            let movedDown = this.movePawn([pawnPosition[0] - 2, pawnPosition[1]]); // These might be reversed
+            this.turn = playerTurn;
+            return  {valid: movedDown.success, location: [pawnPosition[0] - 2, pawnPosition[1]]};
+        }
+        const moveAllDirections = (pawnPosition) => {
+            visitedSquares.add(serialize(pawnPosition));
+            let up = moveUp(pawnPosition);
+            let down = moveDown(pawnPosition);
+            let right = moveRight(pawnPosition);
+            let left = moveLeft(pawnPosition);
+            let results = [up, down, right, left];
+            return results;
+
+        }
+
+        const isWinningRow = (pos) => {
+            return this.turn === 'white' ? pos[0] === 16 : pos[0] === 0;
+        };
+        while (queue.length > 0){
+            const current = queue.shift();
+            const key = serialize(current);
+
+            if(visitedSquares.has(key)) continue;
+            visitedSquares.add(key);
+
+            if(isWinningRow(current)) {
+                return true;
+            }
+
+            const results = moveAllDirections(current);
+            for(const result of results){
+                if(result.valid && !visitedSquares.has(serialize(result.location))) {
+                    queue.push(result.location);
+                }
+            }
+        }
+        return false;
+    }
+
     /**
      * Attempts to move the current player's pawn to a new destination.
      * @param {number[]} destination - The destination position as [row, col].
      * @returns {Object} Result of the move attempt.
      */
+
     movePawn(destination) {
         /**
          * Determines the direction of travel from current to destination.
@@ -415,4 +482,21 @@ class Game {
         }
     }
 }
+
+/*
+    TEST EXAMPLES FOR GAMESTATE GENERATION
+*/
+
+function saveGameState(game, filename = 'gamestate.json') {
+    const serialized = JSON.stringify(game, null, 2);
+    fs.writeFileSync(filename, serialized, 'utf-8');
+}
+let game = new Game;
+
+game.placeWall(7,6);
+game.placeWall(7,10);
+game.movePawn(2,8);
+
+saveGameState(game);
+
 module.exports = Game;
