@@ -1,10 +1,10 @@
-const Game = require("../quoridor.ts");
+import { Game } from "../quoridor";
 
 describe("Game movement", () => {
     /*
 		Unit tests for movements and move validations
 	*/
-    let game;
+    let game: Game;
 
     beforeEach(() => {
         game = new Game();
@@ -55,8 +55,8 @@ describe("Game movement", () => {
     });
 
     test("Should allow wall placement when no obstacles are present, and player has walls remaining", () => {
-        const destinationSlotVertical = [0, 3];
-        const destinationSlotHorizontal = [1, 0];
+        const destinationSlotVertical: [number, number] = [0, 3];
+        const destinationSlotHorizontal: [number, number] = [1, 0];
         const resultVertical = game.placeWall(...destinationSlotVertical);
         const resultHorizontal = game.placeWall(...destinationSlotHorizontal);
         expect(resultVertical.success).toBe(true);
@@ -76,7 +76,7 @@ describe("Game movement", () => {
     });
 
     test("Should not allow wall placement if player has no walls remaining", () => {
-        const wallLocation = [0, 3];
+        const wallLocation: [number, number] = [0, 3];
         game.whiteWalls = 0;
         const result = game.placeWall(...wallLocation);
         expect(result.success).toBe(false);
@@ -85,7 +85,7 @@ describe("Game movement", () => {
     });
 
     test("Should not allow placement of walls in pawn cells", () => {
-        const pawnCellLocation = [0, 0];
+        const pawnCellLocation: [number, number] = [0, 0];
         const result = game.placeWall(...pawnCellLocation);
         expect(result.success).toBe(false);
         expect(game.turn).toBe("white");
@@ -93,10 +93,10 @@ describe("Game movement", () => {
     });
 
     test("Should not allow placement of walls outside the boundary of the board", () => {
-        const tooFarTop = [16, 0];
-        const tooFarBottom = [0, 0];
-        const tooFarLeft = [0, 0];
-        const tooFarRight = [0, 16];
+        const tooFarTop: [number, number] = [16, 0];
+        const tooFarBottom: [number, number] = [0, 0];
+        const tooFarLeft: [number, number] = [0, 0];
+        const tooFarRight: [number, number]= [0, 16];
         const resultTop = game.placeWall(...tooFarTop);
         expect(game.turn).toBe("white");
         const resultBottom = game.placeWall(...tooFarBottom);

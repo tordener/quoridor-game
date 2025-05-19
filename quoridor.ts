@@ -1,20 +1,22 @@
-const fs = require('fs');
+//import * as fs from 'fs';
 /**
  * Represents a game of Quoridor.
  */
 type CalculateMoveHelperResult = {valid: boolean; location: number[]}; // used only in helpers
 type CalculateMovePawnResult = {success: boolean; canJump: boolean | null; jumpDestination: number[] | undefined | null; message: string};
 type MoveResult = {success: boolean; message: string};
-type JumpResultFail = {success: boolean; canJump: boolean; destination: number[] | undefined; message: string };
-type JumpResultSuccess = {success: boolean; canJump: boolean; destination: number[] | undefined};
+type JumpResultFail = {success: boolean; canJump: boolean; destination: number[] | any; message: string };
+type JumpResultSuccess = {success: boolean; canJump: boolean; destination: number[] | any};
 type Snapshot = {turn: string, whitePos: number[], blackPos: number[], board: any[][]};
-class Game {
+
+
+export class Game {
     /**
      * Initializes a new game instance.
      */
     turn: string;
-    whitePos: number[];
-    blackPos: number[];
+    whitePos: number[] | any;
+    blackPos: number[] | any; 
     whiteWalls: number;
     blackWalls: number;
     whiteWon: boolean;
@@ -136,8 +138,8 @@ class Game {
      * This function should be rewritten soon
      * @returns {object} {win: boolean, winner: string}
      */
-    gameWon(): {win: boolean, winner: string} {
-        let won = { win: false, winner: null };
+    gameWon(): {win: boolean, winner: string | null } {
+        let won = { win: false, winner: null as string | null };
         if (this.turn === "black") {
             for (let a = 0; a < 17; a++) {
                 if (this.board[16][a].occupiedBy === "white"){
@@ -149,7 +151,6 @@ class Game {
         if (this.turn === "white") {
             for (let a = 0; a < 17; a++) {
                 if (this.board[0][a].occupiedBy === "black"){
-                    this.blackWon = true;
                     return won = { win: true, winner: "black" };
                 }
             }
@@ -326,7 +327,9 @@ class Game {
             return this.turn === 'white' ? pos[0] === 16 : pos[0] === 0;
         };
         while (queue.length > 0){
-            const current = queue.shift();
+            let current = queue.shift();
+
+            if(!current) continue;
             const key: string = this.serialize(current);
 
             if(visitedSquares.has(key)) continue;
@@ -463,6 +466,7 @@ class Game {
         if (differenceRow > 0) return "down";
         if (differenceCol > 0) return "left";
         if (differenceCol < 0) return "right";
+        return "";
     };
     
     /**
@@ -618,7 +622,7 @@ class Game {
                 message: `pawn can move`,
             };
         }
-    checkForImpedingWalls(targetLocation: number[], orientation: string | boolean): boolean | MoveResult {
+    checkForImpedingWalls(targetLocation: number[], orientation: string | boolean): boolean | MoveResult | any {
         /*
             even row odd col = v
             odd row even col = h
@@ -663,7 +667,7 @@ class Game {
      * @param {number} col - The column index.
      * @returns {Object} Result of the wall placement attempt.
      */
-    placeWall(row: number, col: number): MoveResult {
+    placeWall(row: number, col: number): MoveResult | any {
         let orientation: string | boolean = this.determineWallOrientation(row, col);
         if (
             (this.turn === "white" && this.whiteWalls < 1) ||
@@ -679,40 +683,14 @@ class Game {
             this.board[row][col].occupiedBy = "wall";
             this.board[row + 1][col].occupiedBy = "wall";
             this.board[row + 2][col].occupiedBy = "wall";
-            //this.board[row + 3][col].occupiedBy = "wall";
-            // console.log(`
-            //     before executing manageTurnWalls()
-            //     turn: ${this.turn}
-            //     whiteWalls: ${this.whiteWalls}
-            //     blackWalls: ${this.blackWalls};
-            //     `);
             this.manageTurnWalls();
-            // console.log(`
-            //     after executing manageTurnWalls()
-            //     turn: ${this.turn}
-            //     whiteWalls: ${this.whiteWalls}
-            //     blackWalls: ${this.blackWalls};
-            //     `);
             return { success: true, message: `Vertical wall placed` };
         }
         if (orientation === "h") {
             this.board[row][col].occupiedBy = "wall";
             this.board[row][col + 1].occupiedBy = "wall";
             this.board[row][col + 2].occupiedBy = "wall";
-            //this.board[row][col + 3].occupiedBy = "wall";
-            // console.log(`
-            //     before executing manageTurnWalls()
-            //     turn: ${this.turn}
-            //     whiteWalls: ${this.whiteWalls}
-            //     blackWalls: ${this.blackWalls};
-            //     `);
             this.manageTurnWalls();
-            // console.log(`
-            //     after executing manageTurnWalls()
-            //     turn: ${this.turn}
-            //     whiteWalls: ${this.whiteWalls}
-            //     blackWalls: ${this.blackWalls};
-            //     `);
             return { success: true, message: `Horizontal wall placed` };
         }
         if (orientation === false) {
@@ -732,7 +710,11 @@ class Game {
 //     const serialized = JSON.stringify(game, null, 2);
 //     fs.writeFileSync(filename, serialized, 'utf-8');
 // }
-// let game = new Game;
+let game = new Game;
+game.whitePos = [16,1];
+game.board[0][8].occupiedBy = null;
+game.board[16][1].occupiedBy = 'white';
+console.log(game.gameWon());
 // console.log(game.availableSquares);
 // game.movePawn([2,8]);
 // console.log(game.availableSquares);
@@ -745,4 +727,4 @@ class Game {
 
 // saveGameState(game);
 
-module.exports = Game;
+//module.exports = Game;
