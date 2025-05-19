@@ -1,0 +1,1207 @@
+{
+  "turn": "white",
+  "whitePos": [
+    0,
+    8
+  ],
+  "blackPos": [
+    16,
+    8
+  ],
+  "whiteWalls": 9,
+  "blackWalls": 9,
+  "whiteWon": false,
+  "blackWon": false,
+  "board": [
+    [
+      {
+        "type": "space",
+        "occupiedBy": null
+      },
+      {
+        "type": "v-slot",
+        "occupiedBy": null
+      },
+      {
+        "type": "space",
+        "occupiedBy": null
+      },
+      {
+        "type": "v-slot",
+        "occupiedBy": null
+      },
+      {
+        "type": "space",
+        "occupiedBy": null
+      },
+      {
+        "type": "v-slot",
+        "occupiedBy": null
+      },
+      {
+        "type": "space",
+        "occupiedBy": null
+      },
+      {
+        "type": "v-slot",
+        "occupiedBy": null
+      },
+      {
+        "type": "space",
+        "occupiedBy": "white"
+      },
+      {
+        "type": "v-slot",
+        "occupiedBy": null
+      },
+      {
+        "type": "space",
+        "occupiedBy": null
+      },
+      {
+        "type": "v-slot",
+        "occupiedBy": null
+      },
+      {
+        "type": "space",
+        "occupiedBy": null
+      },
+      {
+        "type": "v-slot",
+        "occupiedBy": null
+      },
+      {
+        "type": "space",
+        "occupiedBy": null
+      },
+      {
+        "type": "v-slot",
+        "occupiedBy": null
+      },
+      {
+        "type": "space",
+        "occupiedBy": null
+      }
+    ],
+    [
+      {
+        "type": "h-slot",
+        "occupiedBy": null
+      },
+      {
+        "type": null,
+        "occupiedBy": null
+      },
+      {
+        "type": "h-slot",
+        "occupiedBy": null
+      },
+      {
+        "type": null,
+        "occupiedBy": null
+      },
+      {
+        "type": "h-slot",
+        "occupiedBy": null
+      },
+      {
+        "type": null,
+        "occupiedBy": null
+      },
+      {
+        "type": "h-slot",
+        "occupiedBy": null
+      },
+      {
+        "type": null,
+        "occupiedBy": null
+      },
+      {
+        "type": "h-slot",
+        "occupiedBy": null
+      },
+      {
+        "type": null,
+        "occupiedBy": null
+      },
+      {
+        "type": "h-slot",
+        "occupiedBy": null
+      },
+      {
+        "type": null,
+        "occupiedBy": null
+      },
+      {
+        "type": "h-slot",
+        "occupiedBy": null
+      },
+      {
+        "type": null,
+        "occupiedBy": null
+      },
+      {
+        "type": "h-slot",
+        "occupiedBy": null
+      },
+      {
+        "type": null,
+        "occupiedBy": null
+      },
+      {
+        "type": "h-slot",
+        "occupiedBy": null
+      }
+    ],
+    [
+      {
+        "type": "space",
+        "occupiedBy": null
+      },
+      {
+        "type": "v-slot",
+        "occupiedBy": null
+      },
+      {
+        "type": "space",
+        "occupiedBy": null
+      },
+      {
+        "type": "v-slot",
+        "occupiedBy": null
+      },
+      {
+        "type": "space",
+        "occupiedBy": null
+      },
+      {
+        "type": "v-slot",
+        "occupiedBy": null
+      },
+      {
+        "type": "space",
+        "occupiedBy": null
+      },
+      {
+        "type": "v-slot",
+        "occupiedBy": null
+      },
+      {
+        "type": "space",
+        "occupiedBy": null
+      },
+      {
+        "type": "v-slot",
+        "occupiedBy": null
+      },
+      {
+        "type": "space",
+        "occupiedBy": null
+      },
+      {
+        "type": "v-slot",
+        "occupiedBy": null
+      },
+      {
+        "type": "space",
+        "occupiedBy": null
+      },
+      {
+        "type": "v-slot",
+        "occupiedBy": null
+      },
+      {
+        "type": "space",
+        "occupiedBy": null
+      },
+      {
+        "type": "v-slot",
+        "occupiedBy": null
+      },
+      {
+        "type": "space",
+        "occupiedBy": null
+      }
+    ],
+    [
+      {
+        "type": "h-slot",
+        "occupiedBy": null
+      },
+      {
+        "type": null,
+        "occupiedBy": null
+      },
+      {
+        "type": "h-slot",
+        "occupiedBy": null
+      },
+      {
+        "type": null,
+        "occupiedBy": null
+      },
+      {
+        "type": "h-slot",
+        "occupiedBy": null
+      },
+      {
+        "type": null,
+        "occupiedBy": null
+      },
+      {
+        "type": "h-slot",
+        "occupiedBy": null
+      },
+      {
+        "type": null,
+        "occupiedBy": null
+      },
+      {
+        "type": "h-slot",
+        "occupiedBy": null
+      },
+      {
+        "type": null,
+        "occupiedBy": null
+      },
+      {
+        "type": "h-slot",
+        "occupiedBy": null
+      },
+      {
+        "type": null,
+        "occupiedBy": null
+      },
+      {
+        "type": "h-slot",
+        "occupiedBy": null
+      },
+      {
+        "type": null,
+        "occupiedBy": null
+      },
+      {
+        "type": "h-slot",
+        "occupiedBy": null
+      },
+      {
+        "type": null,
+        "occupiedBy": null
+      },
+      {
+        "type": "h-slot",
+        "occupiedBy": null
+      }
+    ],
+    [
+      {
+        "type": "space",
+        "occupiedBy": null
+      },
+      {
+        "type": "v-slot",
+        "occupiedBy": null
+      },
+      {
+        "type": "space",
+        "occupiedBy": null
+      },
+      {
+        "type": "v-slot",
+        "occupiedBy": null
+      },
+      {
+        "type": "space",
+        "occupiedBy": null
+      },
+      {
+        "type": "v-slot",
+        "occupiedBy": null
+      },
+      {
+        "type": "space",
+        "occupiedBy": null
+      },
+      {
+        "type": "v-slot",
+        "occupiedBy": null
+      },
+      {
+        "type": "space",
+        "occupiedBy": null
+      },
+      {
+        "type": "v-slot",
+        "occupiedBy": null
+      },
+      {
+        "type": "space",
+        "occupiedBy": null
+      },
+      {
+        "type": "v-slot",
+        "occupiedBy": null
+      },
+      {
+        "type": "space",
+        "occupiedBy": null
+      },
+      {
+        "type": "v-slot",
+        "occupiedBy": null
+      },
+      {
+        "type": "space",
+        "occupiedBy": null
+      },
+      {
+        "type": "v-slot",
+        "occupiedBy": null
+      },
+      {
+        "type": "space",
+        "occupiedBy": null
+      }
+    ],
+    [
+      {
+        "type": "h-slot",
+        "occupiedBy": null
+      },
+      {
+        "type": null,
+        "occupiedBy": null
+      },
+      {
+        "type": "h-slot",
+        "occupiedBy": null
+      },
+      {
+        "type": null,
+        "occupiedBy": null
+      },
+      {
+        "type": "h-slot",
+        "occupiedBy": null
+      },
+      {
+        "type": null,
+        "occupiedBy": null
+      },
+      {
+        "type": "h-slot",
+        "occupiedBy": null
+      },
+      {
+        "type": null,
+        "occupiedBy": null
+      },
+      {
+        "type": "h-slot",
+        "occupiedBy": null
+      },
+      {
+        "type": null,
+        "occupiedBy": null
+      },
+      {
+        "type": "h-slot",
+        "occupiedBy": null
+      },
+      {
+        "type": null,
+        "occupiedBy": null
+      },
+      {
+        "type": "h-slot",
+        "occupiedBy": null
+      },
+      {
+        "type": null,
+        "occupiedBy": null
+      },
+      {
+        "type": "h-slot",
+        "occupiedBy": null
+      },
+      {
+        "type": null,
+        "occupiedBy": null
+      },
+      {
+        "type": "h-slot",
+        "occupiedBy": null
+      }
+    ],
+    [
+      {
+        "type": "space",
+        "occupiedBy": null
+      },
+      {
+        "type": "v-slot",
+        "occupiedBy": null
+      },
+      {
+        "type": "space",
+        "occupiedBy": null
+      },
+      {
+        "type": "v-slot",
+        "occupiedBy": null
+      },
+      {
+        "type": "space",
+        "occupiedBy": null
+      },
+      {
+        "type": "v-slot",
+        "occupiedBy": null
+      },
+      {
+        "type": "space",
+        "occupiedBy": null
+      },
+      {
+        "type": "v-slot",
+        "occupiedBy": null
+      },
+      {
+        "type": "space",
+        "occupiedBy": null
+      },
+      {
+        "type": "v-slot",
+        "occupiedBy": null
+      },
+      {
+        "type": "space",
+        "occupiedBy": null
+      },
+      {
+        "type": "v-slot",
+        "occupiedBy": null
+      },
+      {
+        "type": "space",
+        "occupiedBy": null
+      },
+      {
+        "type": "v-slot",
+        "occupiedBy": null
+      },
+      {
+        "type": "space",
+        "occupiedBy": null
+      },
+      {
+        "type": "v-slot",
+        "occupiedBy": null
+      },
+      {
+        "type": "space",
+        "occupiedBy": null
+      }
+    ],
+    [
+      {
+        "type": "h-slot",
+        "occupiedBy": null
+      },
+      {
+        "type": null,
+        "occupiedBy": null
+      },
+      {
+        "type": "h-slot",
+        "occupiedBy": null
+      },
+      {
+        "type": null,
+        "occupiedBy": null
+      },
+      {
+        "type": "h-slot",
+        "occupiedBy": null
+      },
+      {
+        "type": null,
+        "occupiedBy": null
+      },
+      {
+        "type": "h-slot",
+        "occupiedBy": "wall"
+      },
+      {
+        "type": null,
+        "occupiedBy": null
+      },
+      {
+        "type": "h-slot",
+        "occupiedBy": "wall"
+      },
+      {
+        "type": null,
+        "occupiedBy": null
+      },
+      {
+        "type": "h-slot",
+        "occupiedBy": "wall"
+      },
+      {
+        "type": null,
+        "occupiedBy": null
+      },
+      {
+        "type": "h-slot",
+        "occupiedBy": "wall"
+      },
+      {
+        "type": null,
+        "occupiedBy": null
+      },
+      {
+        "type": "h-slot",
+        "occupiedBy": null
+      },
+      {
+        "type": null,
+        "occupiedBy": null
+      },
+      {
+        "type": "h-slot",
+        "occupiedBy": null
+      }
+    ],
+    [
+      {
+        "type": "space",
+        "occupiedBy": null
+      },
+      {
+        "type": "v-slot",
+        "occupiedBy": null
+      },
+      {
+        "type": "space",
+        "occupiedBy": null
+      },
+      {
+        "type": "v-slot",
+        "occupiedBy": null
+      },
+      {
+        "type": "space",
+        "occupiedBy": null
+      },
+      {
+        "type": "v-slot",
+        "occupiedBy": null
+      },
+      {
+        "type": "space",
+        "occupiedBy": null
+      },
+      {
+        "type": "v-slot",
+        "occupiedBy": null
+      },
+      {
+        "type": "space",
+        "occupiedBy": null
+      },
+      {
+        "type": "v-slot",
+        "occupiedBy": null
+      },
+      {
+        "type": "space",
+        "occupiedBy": null
+      },
+      {
+        "type": "v-slot",
+        "occupiedBy": null
+      },
+      {
+        "type": "space",
+        "occupiedBy": null
+      },
+      {
+        "type": "v-slot",
+        "occupiedBy": null
+      },
+      {
+        "type": "space",
+        "occupiedBy": null
+      },
+      {
+        "type": "v-slot",
+        "occupiedBy": null
+      },
+      {
+        "type": "space",
+        "occupiedBy": null
+      }
+    ],
+    [
+      {
+        "type": "h-slot",
+        "occupiedBy": null
+      },
+      {
+        "type": null,
+        "occupiedBy": null
+      },
+      {
+        "type": "h-slot",
+        "occupiedBy": null
+      },
+      {
+        "type": null,
+        "occupiedBy": null
+      },
+      {
+        "type": "h-slot",
+        "occupiedBy": null
+      },
+      {
+        "type": null,
+        "occupiedBy": null
+      },
+      {
+        "type": "h-slot",
+        "occupiedBy": null
+      },
+      {
+        "type": null,
+        "occupiedBy": null
+      },
+      {
+        "type": "h-slot",
+        "occupiedBy": null
+      },
+      {
+        "type": null,
+        "occupiedBy": null
+      },
+      {
+        "type": "h-slot",
+        "occupiedBy": null
+      },
+      {
+        "type": null,
+        "occupiedBy": null
+      },
+      {
+        "type": "h-slot",
+        "occupiedBy": null
+      },
+      {
+        "type": null,
+        "occupiedBy": null
+      },
+      {
+        "type": "h-slot",
+        "occupiedBy": null
+      },
+      {
+        "type": null,
+        "occupiedBy": null
+      },
+      {
+        "type": "h-slot",
+        "occupiedBy": null
+      }
+    ],
+    [
+      {
+        "type": "space",
+        "occupiedBy": null
+      },
+      {
+        "type": "v-slot",
+        "occupiedBy": null
+      },
+      {
+        "type": "space",
+        "occupiedBy": null
+      },
+      {
+        "type": "v-slot",
+        "occupiedBy": null
+      },
+      {
+        "type": "space",
+        "occupiedBy": null
+      },
+      {
+        "type": "v-slot",
+        "occupiedBy": null
+      },
+      {
+        "type": "space",
+        "occupiedBy": null
+      },
+      {
+        "type": "v-slot",
+        "occupiedBy": null
+      },
+      {
+        "type": "space",
+        "occupiedBy": null
+      },
+      {
+        "type": "v-slot",
+        "occupiedBy": null
+      },
+      {
+        "type": "space",
+        "occupiedBy": null
+      },
+      {
+        "type": "v-slot",
+        "occupiedBy": null
+      },
+      {
+        "type": "space",
+        "occupiedBy": null
+      },
+      {
+        "type": "v-slot",
+        "occupiedBy": null
+      },
+      {
+        "type": "space",
+        "occupiedBy": null
+      },
+      {
+        "type": "v-slot",
+        "occupiedBy": null
+      },
+      {
+        "type": "space",
+        "occupiedBy": null
+      }
+    ],
+    [
+      {
+        "type": "h-slot",
+        "occupiedBy": null
+      },
+      {
+        "type": null,
+        "occupiedBy": null
+      },
+      {
+        "type": "h-slot",
+        "occupiedBy": null
+      },
+      {
+        "type": null,
+        "occupiedBy": null
+      },
+      {
+        "type": "h-slot",
+        "occupiedBy": null
+      },
+      {
+        "type": null,
+        "occupiedBy": null
+      },
+      {
+        "type": "h-slot",
+        "occupiedBy": null
+      },
+      {
+        "type": null,
+        "occupiedBy": null
+      },
+      {
+        "type": "h-slot",
+        "occupiedBy": null
+      },
+      {
+        "type": null,
+        "occupiedBy": null
+      },
+      {
+        "type": "h-slot",
+        "occupiedBy": null
+      },
+      {
+        "type": null,
+        "occupiedBy": null
+      },
+      {
+        "type": "h-slot",
+        "occupiedBy": null
+      },
+      {
+        "type": null,
+        "occupiedBy": null
+      },
+      {
+        "type": "h-slot",
+        "occupiedBy": null
+      },
+      {
+        "type": null,
+        "occupiedBy": null
+      },
+      {
+        "type": "h-slot",
+        "occupiedBy": null
+      }
+    ],
+    [
+      {
+        "type": "space",
+        "occupiedBy": null
+      },
+      {
+        "type": "v-slot",
+        "occupiedBy": null
+      },
+      {
+        "type": "space",
+        "occupiedBy": null
+      },
+      {
+        "type": "v-slot",
+        "occupiedBy": null
+      },
+      {
+        "type": "space",
+        "occupiedBy": null
+      },
+      {
+        "type": "v-slot",
+        "occupiedBy": null
+      },
+      {
+        "type": "space",
+        "occupiedBy": null
+      },
+      {
+        "type": "v-slot",
+        "occupiedBy": null
+      },
+      {
+        "type": "space",
+        "occupiedBy": null
+      },
+      {
+        "type": "v-slot",
+        "occupiedBy": null
+      },
+      {
+        "type": "space",
+        "occupiedBy": null
+      },
+      {
+        "type": "v-slot",
+        "occupiedBy": null
+      },
+      {
+        "type": "space",
+        "occupiedBy": null
+      },
+      {
+        "type": "v-slot",
+        "occupiedBy": null
+      },
+      {
+        "type": "space",
+        "occupiedBy": null
+      },
+      {
+        "type": "v-slot",
+        "occupiedBy": null
+      },
+      {
+        "type": "space",
+        "occupiedBy": null
+      }
+    ],
+    [
+      {
+        "type": "h-slot",
+        "occupiedBy": null
+      },
+      {
+        "type": null,
+        "occupiedBy": null
+      },
+      {
+        "type": "h-slot",
+        "occupiedBy": null
+      },
+      {
+        "type": null,
+        "occupiedBy": null
+      },
+      {
+        "type": "h-slot",
+        "occupiedBy": null
+      },
+      {
+        "type": null,
+        "occupiedBy": null
+      },
+      {
+        "type": "h-slot",
+        "occupiedBy": null
+      },
+      {
+        "type": null,
+        "occupiedBy": null
+      },
+      {
+        "type": "h-slot",
+        "occupiedBy": null
+      },
+      {
+        "type": null,
+        "occupiedBy": null
+      },
+      {
+        "type": "h-slot",
+        "occupiedBy": null
+      },
+      {
+        "type": null,
+        "occupiedBy": null
+      },
+      {
+        "type": "h-slot",
+        "occupiedBy": null
+      },
+      {
+        "type": null,
+        "occupiedBy": null
+      },
+      {
+        "type": "h-slot",
+        "occupiedBy": null
+      },
+      {
+        "type": null,
+        "occupiedBy": null
+      },
+      {
+        "type": "h-slot",
+        "occupiedBy": null
+      }
+    ],
+    [
+      {
+        "type": "space",
+        "occupiedBy": null
+      },
+      {
+        "type": "v-slot",
+        "occupiedBy": null
+      },
+      {
+        "type": "space",
+        "occupiedBy": null
+      },
+      {
+        "type": "v-slot",
+        "occupiedBy": null
+      },
+      {
+        "type": "space",
+        "occupiedBy": null
+      },
+      {
+        "type": "v-slot",
+        "occupiedBy": null
+      },
+      {
+        "type": "space",
+        "occupiedBy": null
+      },
+      {
+        "type": "v-slot",
+        "occupiedBy": null
+      },
+      {
+        "type": "space",
+        "occupiedBy": null
+      },
+      {
+        "type": "v-slot",
+        "occupiedBy": null
+      },
+      {
+        "type": "space",
+        "occupiedBy": null
+      },
+      {
+        "type": "v-slot",
+        "occupiedBy": null
+      },
+      {
+        "type": "space",
+        "occupiedBy": null
+      },
+      {
+        "type": "v-slot",
+        "occupiedBy": null
+      },
+      {
+        "type": "space",
+        "occupiedBy": null
+      },
+      {
+        "type": "v-slot",
+        "occupiedBy": null
+      },
+      {
+        "type": "space",
+        "occupiedBy": null
+      }
+    ],
+    [
+      {
+        "type": "h-slot",
+        "occupiedBy": null
+      },
+      {
+        "type": null,
+        "occupiedBy": null
+      },
+      {
+        "type": "h-slot",
+        "occupiedBy": null
+      },
+      {
+        "type": null,
+        "occupiedBy": null
+      },
+      {
+        "type": "h-slot",
+        "occupiedBy": null
+      },
+      {
+        "type": null,
+        "occupiedBy": null
+      },
+      {
+        "type": "h-slot",
+        "occupiedBy": null
+      },
+      {
+        "type": null,
+        "occupiedBy": null
+      },
+      {
+        "type": "h-slot",
+        "occupiedBy": null
+      },
+      {
+        "type": null,
+        "occupiedBy": null
+      },
+      {
+        "type": "h-slot",
+        "occupiedBy": null
+      },
+      {
+        "type": null,
+        "occupiedBy": null
+      },
+      {
+        "type": "h-slot",
+        "occupiedBy": null
+      },
+      {
+        "type": null,
+        "occupiedBy": null
+      },
+      {
+        "type": "h-slot",
+        "occupiedBy": null
+      },
+      {
+        "type": null,
+        "occupiedBy": null
+      },
+      {
+        "type": "h-slot",
+        "occupiedBy": null
+      }
+    ],
+    [
+      {
+        "type": "space",
+        "occupiedBy": null
+      },
+      {
+        "type": "v-slot",
+        "occupiedBy": null
+      },
+      {
+        "type": "space",
+        "occupiedBy": null
+      },
+      {
+        "type": "v-slot",
+        "occupiedBy": null
+      },
+      {
+        "type": "space",
+        "occupiedBy": null
+      },
+      {
+        "type": "v-slot",
+        "occupiedBy": null
+      },
+      {
+        "type": "space",
+        "occupiedBy": null
+      },
+      {
+        "type": "v-slot",
+        "occupiedBy": null
+      },
+      {
+        "type": "space",
+        "occupiedBy": "black"
+      },
+      {
+        "type": "v-slot",
+        "occupiedBy": null
+      },
+      {
+        "type": "space",
+        "occupiedBy": null
+      },
+      {
+        "type": "v-slot",
+        "occupiedBy": null
+      },
+      {
+        "type": "space",
+        "occupiedBy": null
+      },
+      {
+        "type": "v-slot",
+        "occupiedBy": null
+      },
+      {
+        "type": "space",
+        "occupiedBy": null
+      },
+      {
+        "type": "v-slot",
+        "occupiedBy": null
+      },
+      {
+        "type": "space",
+        "occupiedBy": null
+      }
+    ]
+  ]
+}
