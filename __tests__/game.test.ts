@@ -1,4 +1,4 @@
-import { Game } from "../quoridor";
+import { Game } from "../src/quoridor";
 
 describe("Game movement", () => {
     /*
@@ -294,6 +294,7 @@ describe("Game movement", () => {
         game.turn = "black";
 
         const resultBlackReachesBlackSide = game.movePawn([0, 10]);
+        console.log(resultBlackReachesBlackSide);
         expect(resultBlackReachesBlackSide.success).toBe(true);
         expect(game.blackWon).toBe(true);
     });

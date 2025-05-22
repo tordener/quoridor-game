@@ -139,20 +139,20 @@ export class Game {
      * @returns {object} {win: boolean, winner: string}
      */
     gameWon(): {win: boolean, winner: string | null } {
+
         let won = { win: false, winner: null as string | null };
-        if (this.turn === "black") {
-            for (let a = 0; a < 17; a++) {
-                if (this.board[16][a].occupiedBy === "white"){
-                    this.whiteWon = true;
-                    return won = { win: true, winner: "white" };
-                }
+        for(let a = 0; a < 17; a++){
+            if(this.board[0][a].occupiedBy === "black"){
+                this.blackWon = true;
+                won.win = true;
+                won.winner = "black";
+                return won;
             }
-        }
-        if (this.turn === "white") {
-            for (let a = 0; a < 17; a++) {
-                if (this.board[0][a].occupiedBy === "black"){
-                    return won = { win: true, winner: "black" };
-                }
+            if(this.board[16][a].occupiedBy === "white"){
+                this.whiteWon = true;
+                won.win = true;
+                won.winner = "white";
+                return won;
             }
         }
         return won;
@@ -515,6 +515,7 @@ export class Game {
             jumpOverPawn(destination);
             this.availableSquares = this.generateAvailableSquares(destination);
             this.manageTurnMove();
+            console.log(`moved to ${destination} (FIRST BLOCK)`)
             this.gameWon();
             return {success: true, message: `jump successful`};
         }
@@ -525,6 +526,7 @@ export class Game {
                 this.board[lastPlace[0]][lastPlace[1]].occupiedBy = null;
                 this.board[destination[0]][destination[1]].occupiedBy = "white";
                 this.availableSquares = this.generateAvailableSquares(destination);
+                console.log(`moved to ${destination} (SECOND BLOCK)`)
                 this.manageTurnMove();
                 this.gameWon();
                 return {success: true, message: `jump successful`};
@@ -533,6 +535,7 @@ export class Game {
                 this.board[lastPlace[0]][lastPlace[1]].occupiedBy = null;
                 this.board[destination[0]][destination[1]].occupiedBy = "black";
                 this.availableSquares = this.generateAvailableSquares(destination);
+                console.log(`moved to ${destination} (THIRD BLOCK)`)
                 this.manageTurnMove();
                 this.gameWon();
                 return {success: true, message: `jump successful`};
@@ -710,11 +713,16 @@ export class Game {
 //     const serialized = JSON.stringify(game, null, 2);
 //     fs.writeFileSync(filename, serialized, 'utf-8');
 // }
-let game = new Game;
-game.whitePos = [16,1];
-game.board[0][8].occupiedBy = null;
-game.board[16][1].occupiedBy = 'white';
-console.log(game.gameWon());
+
+
+// let game = new Game;
+// game.blackPos = [0,8];
+// game.board[16][8].occupiedBy = null;
+// game.board[0][8].occupiedBy = 'black';
+// game.board[0][2].occupiedBy = 'white';
+// game.turn = 'white';
+// console.log(game.gameWon());
+
 // console.log(game.availableSquares);
 // game.movePawn([2,8]);
 // console.log(game.availableSquares);

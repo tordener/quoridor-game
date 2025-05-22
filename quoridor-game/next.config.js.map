@@ -1,0 +1,1 @@
+{"version":3,"file":"next.config.js","sourceRoot":"","sources":["next.config.ts"],"names":[],"mappings":";;AAEA,MAAM,UAAU,GAAe;AAC7B,yBAAyB;CAC1B,CAAC;AAEF,kBAAe,UAAU,CAAC","sourcesContent":["import type { NextConfig } from \"next\";\r\n\r\nconst nextConfig: NextConfig = {\r\n  /* config options here */\r\n};\r\n\r\nexport default nextConfig;\r\n"]}
