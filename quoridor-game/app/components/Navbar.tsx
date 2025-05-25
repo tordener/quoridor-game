@@ -10,7 +10,7 @@ export default function Navbar() {
                                 </div>
                                 <div>
                                     <h1 className="text-white text-3xl sm:text-5xl font-semibold leading-tight">
-                                    Quoridor
+                                    Qu<span className="animate-pulse text-white">o</span>rid<span className="text-cyan-900 animate-pulse">o</span>r
                                     </h1>
                                     <p className="text-cyan-400 text-xs sm:text-base">A TypeScript Implementation</p>
                                 </div>
@@ -19,14 +19,14 @@ export default function Navbar() {
                     </div>
                     <div className="text-right">
                         <div>
-                            Welcome, <a href="#" className="font-medium text-white over:underline hover:text-cyan-300">QuoridorFan</a>!
+                            Welcome, <a href="/profile" className="font-medium text-white over:underline hover:text-cyan-300">QuoridorFan</a>!
                         </div>
                         <div>
-                            <a href="#" className="font-medium text-white over:underline hover:text-cyan-300">Logout</a>
+                            <a href="/logout" className="font-medium text-white over:underline hover:text-cyan-300">Logout</a>
                             <span className="material-symbols-outlined relative top-[6px]">logout</span>
                         </div>
                         <div className="flex flex-col mx-auto w-full">
-                            <a className="text-right" href="#">Game Lobby</a>
+                            <a className="text-right" href="/lobby">Game Lobby</a>
                         </div>
                     </div>
                 </div>

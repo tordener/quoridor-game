@@ -14,19 +14,19 @@ export default function ProfilePage() {
         {/* Username and avatar section */}
         <div className="lg:w-3/4 w-full mx-auto">
           <ProfileName />
+            <p className="text-center sm:text-right lg:text-center text-gray-200 text-large">Recent Games</p>
         </div>
 
         {/* Section title: Recent Games */}
         <div className="flex w-full text-lg text-gray-400">
           <div className="" />
           <div className="w-3/4">
-            <p className="text-center sm:text-right lg:text-center pl-24 text-gray-200 text-large">Recent Games</p>
           </div>
         </div>
 
         {/* Stats and Game history side-by-side */}
         <div className="flex w-full max-w-5xl mx-auto">
-          <div className="w-30 mr-1">
+          <div className="w-20 sm:w-20 md:w-30 lg:w-30 lg:mr-1">
             <GameStats />
           </div>
           <div className="w-full ml-1 sm:ml-1 md:ml-1 lg:ml-3">
