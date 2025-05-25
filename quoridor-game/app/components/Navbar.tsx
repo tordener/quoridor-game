@@ -6,7 +6,7 @@ export default function Navbar() {
                         <div className="py-6 px-4 sm:px-8 flex items-center justify-between">
                             <div className="flex items-center space-x-4">
                                 <div className="text-orange-400 text-3xl font-bold tracking-tight">
-                                    <span className="text-orange-400  material-symbols-outlined relative top-3" style="font-size:4rem;">grid_goldenratio</span>
+                                    <span className="text-orange-400  material-symbols-outlined relative top-3" style={{ fontSize: "4rem" }}>grid_goldenratio</span>
                                 </div>
                                 <div>
                                     <h1 className="text-white text-3xl sm:text-5xl font-semibold leading-tight">
