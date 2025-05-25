@@ -102,7 +102,7 @@
 
 </style>
 
-<body class="bg-gray-700 mt-10 mr-1 ml-1">
+<body class="bg-gray-800 mt-10 mr-1 ml-1">
     <div id="board-container">
         <div id="board">
         </div>
@@ -122,15 +122,15 @@
                     for (let b = 0; b < 17; b++) {
                         if (b === 0) rowString += `<div class="flex items-center hide-caret justify-center bg-transparent">`;
                         if (b % 2 === 0) rowString += `<div id="${a},${b}" class="bg-gray-600 w-10 h-10 hover:bg-red-400" onclick="makeMove(${a},${b})"></div>`;
-                        if (b % 2 === 1) rowString += `<div id="${a},${b}" class="bg-gray-700 w-2 h-10 hover:bg-yellow-400"></div>`;
+                        if (b % 2 === 1) rowString += `<div id="${a},${b}" class="bg-gray-800 w-2 h-10 hover:bg-yellow-400"></div>`;
                     }
                     rowString += `</div>`;
                 }
                 if (a % 2 === 1) {
                     for (let c = 0; c < 17; c++) {
                         if (c === 0) rowString += `<div class="flex items-center hide-caret justify-center bg-transparent">`;
-                        if (c % 2 === 0) rowString += `<div id="${a},${c}" class="bg-gray-700 h-2 w-10 hover:bg-yellow-400"></div>`;
-                        if (c % 2 === 1) rowString += `<div id="${a},${c}" class="bg-gray-700 h-2 w-2"></div>`;
+                        if (c % 2 === 0) rowString += `<div id="${a},${c}" class="bg-gray-800 h-2 w-10 hover:bg-yellow-400"></div>`;
+                        if (c % 2 === 1) rowString += `<div id="${a},${c}" class="bg-gray-800 h-2 w-2"></div>`;
                     }
                     rowString += `</div>`;
                 }
