@@ -4,19 +4,28 @@ import bcrypt from 'bcryptjs';
 import db from '@/lib/db';
 import nodemailer from 'nodemailer';
 import dotenv from 'dotenv';
+import { isRateLimited } from '@/lib/rateLimit';
 
 dotenv.config();
 const smtpUser = process.env.EMAIL_SERVER_LOGIN;
 const smtpPass = process.env.EMAIL_SERVER_PSWD;
-const verificationCode: string = generateVerificationCode(16);
 
-
-
+/**
+ * Uses the regex expression to evaluate if the given string
+ * is in the form of an email address
+ * @param email string - the string to be tested against the regex
+ * @returns boolean - pass/fail true for email format
+ */
 function isValidEmail(email: string): boolean {
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     return emailRegex.test(email);
 }
 
+/**
+ * 
+ * @param strength number - Number of alpha-numeric characters the verfication code will be
+ * @returns string - the verification code of specified length;
+ */
 function generateVerificationCode(strength: number): string{
     const letters: string[] = ['0','1','2','3','4','5','6','7','8','9','a','A','b','B'
         ,'C','c','D','d','E','e','f','F','g','G','H','h','I','i','J','j','K'
@@ -34,6 +43,14 @@ function generateVerificationCode(strength: number): string{
 }
 
 export async function POST(req: Request) {
+    const verificationCode: string = generateVerificationCode(16);
+    /*
+        * rate limiting logic
+    */
+    const ip = req.headers.get('x-forwarded-for') || 'unknown';
+    if(isRateLimited(ip)) {
+        return NextResponse.json({error: 'rate limit exceeded'}, {status: 429 });
+    }
     try {
         
         const body = await req.json();
@@ -56,7 +73,7 @@ export async function POST(req: Request) {
             await transporter.sendMail({
                 from: `quoridor <bartonix@gmail.com>`,
                 to: email,
-                subject: 'Quoridor user registration - Verify your email',
+                subject: `Quoridor - ${username} - user registration - Verify your email`,
                 html: `
                 <table width="100%" height="300px" cellpadding="0" cellspacing="0" border="0" style="background-color: #111827; color: white;">
                     <tr>
@@ -67,7 +84,7 @@ export async function POST(req: Request) {
                                     <p style="margin: 0 0 8px 0; font-size: 24px; font-weight: bold; color: white;">${username},</p>
                                     <p style="margin: 0 0 12px 0; font-size: 16px; font-weight: 600; color: #9CA3AF;">Welcome to Quoridor!</p>
                                     <p style="margin: 0 0 16px 0; font-size: 14px; font-weight: 400; color: white;">Thanks for signing up. Click the button below to verify your email.</p>
-                                    <a href="localhost:3000/verifyUser?user=${username}&verificationCode=${verificationCode}" style="display: inline-block; padding: 10px 20px; background-color: #06B6D4; color: white; text-decoration: none; border-radius: 6px; font-weight: bold; font-size: 14px;">Verify Email</a>
+                                    <a href="${process.env.APP_URL}/verifyUser?user=${username}&verificationCode=${verificationCode}" style="display: inline-block; padding: 10px 20px; background-color: #06B6D4; color: white; text-decoration: none; border-radius: 6px; font-weight: bold; font-size: 14px;">Verify Email</a>
                                 </td>
                             </tr>
                         </table>
@@ -90,7 +107,7 @@ export async function POST(req: Request) {
             .executeTakeFirst();
         
             if(existingUser){
-                return NextResponse.json({error: 'User already exists'}, {status: 409});
+                return NextResponse.json({message: 'If email is valid, a verification link as been sent to the email address provided'});
             }
 
             const hashedPassword = await bcrypt.hash(password, 10);
