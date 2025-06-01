@@ -4,6 +4,7 @@ import GameStats from "../../components/GameStats";
 import GameHistory from "../../components/GameHistory";
 import Footer from "../../components/Footer";
 import ProfileName from "../../components/ProfileName";
+import FriendsWidget from "../../components/FriendsWidget";
 import db from "@/lib/db";
 
 interface ProfilePageProps {
@@ -44,35 +45,72 @@ export default async function ProfilePage({params} : ProfilePageProps) {
     )
   }
   return (
-    <div className="flex flex-col min-h-screen bg-gray-800 text-white">
-      <Navbar />
+<div className="flex flex-col min-h-screen bg-gray-800 text-white">
+  <Navbar />
 
-      <main className="flex flex-col flex-grow w-full px-4">
-        {/* Username and avatar section */}
-        <div className="lg:w-3/4 w-full mx-auto">
+  <main className="flex flex-col flex-grow w-full px-4 mt-3">
+    <div className="mx-auto flex flex-row w-full">
+          <div className="w-full mb-1">
+            <GameStats
+              rank={profileData.rank}
+              rating={profileData.elo}
+              games={profileData.games}
+            />
+          </div>
+    </div>
+    <div className="flex flex-col lg:flex-row w-full max-w-7xl mx-auto gap-4">
+
+      {/* Left Column: Achievements */}
+      <div className="flex flex-col w-full lg:w-full bg-gray-900 rounded-xl p-4 min-h-[400px]">
+        <div>
           <ProfileName username={profileData.username} createdAt={profileData.created_at} />
-            <p className="text-center sm:text-right lg:text-center text-gray-200 text-large">Recent Games</p>
         </div>
-
-        {/* Section title: Recent Games */}
-        <div className="flex w-full text-lg text-gray-400">
-          <div className="" />
-          <div className="w-3/4">
+        <div className="text-lg font-bold text-center mb-4 bg-gray-800 rounded-full px-4 py-2">
+          <p>Awards</p>
+          <span className="material-symbols-outlined text-cyan-200" style={{ fontSize: '50px' }}>
+            military_tech
+          </span>
+        </div>
+        <hr className="w-full border-gray-700 mb-4" />
+        <div className="text-white font-bold text-sm text-center space-y-6 flex-grow">
+          <div>
+            <p>Participation Trophy</p>
+            <span className="material-symbols-outlined text-cyan-200" style={{ fontSize: '50px' }}>
+              person_raised_hand
+            </span>
+          </div>
+          <div>
+            <p>Social Butterfly</p>
+            <span className="material-symbols-outlined text-cyan-200" style={{ fontSize: '50px' }}>
+              crowdsource
+            </span>
           </div>
         </div>
+      </div>
 
-        {/* Stats and Game history side-by-side */}
-        <div className="flex w-full max-w-5xl mx-auto">
-          <div className="w-20 sm:w-20 md:w-30 lg:w-30 lg:mr-1">
-            <GameStats rank={profileData.rank} rating={profileData.elo} games={profileData.games}/>
-          </div>
-          <div className="w-full ml-1 sm:ml-1 md:ml-1 lg:ml-3">
+      {/* Middle Column: Username on top, Friends below */}
+      <div className="flex flex-col w-full mx-auto gap-4">
+        <div className="flex-grow">
+          <FriendsWidget />
+        </div>
+      </div>
+
+      {/* Right Column: GameStats + GameHistory */}
+      <div className="flex flex-row  w-full flex-grow gap-4 min-h-[400px]">
+        <div className="flex flex-col sm:flex-row w-full h-full gap-4">
+          {/* Game Stats on the left even in mobile */}
+ 
+
+          {/* Game History fills remaining space */}
+          <div className="flex-grow w-full">
             <GameHistory />
           </div>
         </div>
-      </main>
-
-      <Footer />
+      </div>
     </div>
+  </main>
+
+  <Footer />
+</div>
   );
 }

@@ -60,23 +60,29 @@ export default function Navbar() {
         <div className="text-right space-y-2">
           {user ? (
             <>
-              <div>
-                Welcome,{' '}
-                <Link href="/profile" className="font-medium text-white hover:underline hover:text-cyan-300">
-                  {user.username}
-                </Link>
-                !
+              <div className="flex flex-row">
+                <div>
+                  <Link href="/profile" className="mx-auto text-cyan-300 text-lg font-bold hover:underline hover:text-cyan-300">
+                    {user.username}
+                  </Link>
+                </div>
+                <div className="rounded-full animate-pulse bg-cyan-300 ml-1 relative  h-7 w-7">
+                  <span className="material-symbols-outlined relative -top-0.5 right-0.25 text-cyan-700" style={{fontSize: '30px'}}>
+                    notifications
+                  </span>
+                </div>
+
               </div>
               
-                <button onClick={handleLogout} type="submit" className="font-medium text-white hover:underline hover:text-cyan-300 flex items-center">
-                  Logout
-                  <span className="material-symbols-outlined relative top-[6px] ml-1">logout</span>
-                </button>
-              
               <div className="flex flex-col mx-auto w-full">
-                <Link className="text-right" href="/lobby">
+                <Link className="text-right mx-auto" href="/lobby">
                   Game Lobby
                 </Link>
+              
+                <button onClick={handleLogout} type="submit" className="font-medium mx-auto text-white hover:underline hover:text-cyan-300 flex items-center">
+                  Logout
+                  <span className="material-symbols-outlined mx-auto mt-2 relative top-[-4px] ml-1">logout</span>
+                </button>
               </div>
             </>
           ) : (
