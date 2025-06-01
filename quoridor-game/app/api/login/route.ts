@@ -1,5 +1,6 @@
 import { NextResponse } from 'next/server';
 import {InsertUser} from '@/lib/db';
+import {signJwt} from '@/lib/jwt';
 import bcrypt from 'bcryptjs';
 import db from '@/lib/db';
 import dotenv from 'dotenv';
@@ -24,10 +25,15 @@ export async function POST(req: Request) {
         }
 
         const isMatch = await bcrypt.compare(password, user.password);
-        if(!isMatch){
-            return NextResponse.json({error: 'Invalid username or password'});
+        if(!isMatch){            
+            return NextResponse.json({error: 'Invalid username or password'}, {status:400});
         }
-        return NextResponse.json({
+        const token = signJwt({
+            userId: user.id,
+            username: user.username,
+            email: user.email
+        });
+        const resp = NextResponse.json({
             message: 'login successful',
             user: {
                 id: user.id,
@@ -35,6 +41,15 @@ export async function POST(req: Request) {
                 email: user.email
             }
         }, {status: 200});
+
+        resp.cookies.set('session', token, {
+            httpOnly: true,
+            maxAge: 60,
+            path: '/'
+        });
+
+        return resp;
+        
     } catch (error) {
         console.error('[LOGIN ERROR]', error);
         return NextResponse.json({error: 'Internal Server Error'}, {status: 500});

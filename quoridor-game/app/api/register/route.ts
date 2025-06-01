@@ -69,36 +69,7 @@ export async function POST(req: Request) {
                 pass: smtpPass,
             },
         });
-        try {
-            await transporter.sendMail({
-                from: `quoridor <bartonix@gmail.com>`,
-                to: email,
-                subject: `Quoridor - ${username} - user registration - Verify your email`,
-                html: `
-                <table width="100%" height="300px" cellpadding="0" cellspacing="0" border="0" style="background-color: #111827; color: white;">
-                    <tr>
-                        <td align="center">
-                        <table width="600" cellpadding="20" cellspacing="0" border="0" style="background-color: #1F2937; border-radius: 8px;">
-                            <tr>
-                                <td align="center" style="font-family: Arial, sans-serif; padding: 20px;">
-                                    <p style="margin: 0 0 8px 0; font-size: 24px; font-weight: bold; color: white;">${username},</p>
-                                    <p style="margin: 0 0 12px 0; font-size: 16px; font-weight: 600; color: #9CA3AF;">Welcome to Quoridor!</p>
-                                    <p style="margin: 0 0 16px 0; font-size: 14px; font-weight: 400; color: white;">Thanks for signing up. Click the button below to verify your email.</p>
-                                    <a href="${process.env.APP_URL}/verifyUser?user=${username}&verificationCode=${verificationCode}" style="display: inline-block; padding: 10px 20px; background-color: #06B6D4; color: white; text-decoration: none; border-radius: 6px; font-weight: bold; font-size: 14px;">Verify Email</a>
-                                </td>
-                            </tr>
-                        </table>
-                        </td>
-                    </tr>
-                </table>
-                `,
-            });
-            console.log(`E-mail sent to ${email}`);
-        } catch (error) {
-            console.error('Failed to send email:', error);
-        }
-
-
+        
         console.log('Checking existing user with email:' , email);
         const existingUser = await db
             .selectFrom('users')
@@ -125,7 +96,36 @@ export async function POST(req: Request) {
                 .returning(['id', 'username', 'email'])
                 .executeTakeFirst();
 
-                return NextResponse.json({message: 'User created', user: insertedUser}, {status: 201});
+            try {
+            await transporter.sendMail({
+                from: `quoridor <bartonix@gmail.com>`,
+                to: email,
+                subject: `Quoridor - ${username} - user registration - Verify your email`,
+                html: `
+                <table width="100%" height="300px" cellpadding="0" cellspacing="0" border="0" style="background-color: #111827; color: white;">
+                    <tr>
+                        <td align="center">
+                        <table width="600" cellpadding="20" cellspacing="0" border="0" style="background-color: #1F2937; border-radius: 8px;">
+                            <tr>
+                                <td align="center" style="font-family: Arial, sans-serif; padding: 20px;">
+                                    <p style="margin: 0 0 8px 0; font-size: 24px; font-weight: bold; color: white;">${username},</p>
+                                    <p style="margin: 0 0 12px 0; font-size: 16px; font-weight: 600; color: #9CA3AF;">Welcome to Quoridor!</p>
+                                    <p style="margin: 0 0 16px 0; font-size: 14px; font-weight: 400; color: white;">Thanks for signing up. Click the button below to verify your email.</p>
+                                    <a href="${process.env.APP_URL}/api/verifyUser?user=${username}&verificationCode=${verificationCode}" style="display: inline-block; padding: 10px 20px; background-color: #06B6D4; color: white; text-decoration: none; border-radius: 6px; font-weight: bold; font-size: 14px;">Verify Email</a>
+                                </td>
+                            </tr>
+                        </table>
+                        </td>
+                    </tr>
+                </table>
+                `,
+            });
+            console.log(`E-mail sent to ${email}`);
+        } catch (error) {
+            console.error('Failed to send email:', error);
+        }
+
+            return NextResponse.json({message: 'User created', user: insertedUser}, {status: 201});
         } catch (error) {
             console.error('[REGISTER ERROR]', error);
             return NextResponse.json({error: 'Internal server error'}, {status: 500});

@@ -1,19 +1,16 @@
 import jwt from 'jsonwebtoken';
 
-const SECRET_KEY = process.env.JWT_SECRET;
+const SECRET_KEY = process.env.JWT_SECRET || 'testing';
 
-export interface JwtPayload {
-    userId: string;
-}
+export const signJwt = (payload: object) => {
+    return jwt.sign(payload, SECRET_KEY, {expiresIn: '1h'});
+};
 
-export function signJwt(payload: JwtPayload, expiresIn = '1h') {
-    return jwt.sign(payload, SECRET_KEY, {expiresIn});
-}
 
-export function verifyJwt(token: string): JwtPayload | null {
+export const verifyJwt = (token: string) => {
     try {
-        return jwt.verify(token, SECRET_KEY) as JwtPayload;
+        return jwt.verify(token, SECRET_KEY);
     } catch (error) {
         return null;
     }
-}
+};

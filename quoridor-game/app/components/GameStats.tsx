@@ -1,4 +1,10 @@
-export default function GameStats(){
+interface GameStatsProps {
+    rating: number;
+    rank: number;
+    games: number;
+}
+
+export default function GameStats({rating, rank, games} : GameStatsProps){
     return (
     <div className="flex flex-col w-20 sm:w-35 md:w-35 lg:w-35 mt-2 mb-2">
       <div className="relative overflow-x-auto w-40 rounded-br-xl rounded-bl-xl border-gray-100 text-white font-bold">
@@ -14,19 +20,19 @@ export default function GameStats(){
         {/* Rating */}
         <div className="bg-gray-300 rounded-xl shadow-lg ml-3 m-1 w-16 h-16 lg:w-30 lg:h-30 flex flex-col justify-center items-center">
           <p className="text-sm text-gray-800 text-center font-bold">Rating</p>
-          <p className="text-lg text-gray-900 text-center font-bold">2581</p>
+          <p className="text-lg text-gray-900 text-center font-bold">{rating}</p>
         </div>
 
         {/* Games */}
         <div className="bg-gray-300 rounded-xl shadow-lg ml-3 m-1 w-16 h-16 lg:w-30 lg:h-30 flex flex-col justify-center items-center">
           <p className="text-sm text-gray-800 text-center font-bold">Games</p>
-          <p className="text-sm text-gray-900 text-center font-bold">258,166</p>
+          <p className="text-sm text-gray-900 text-center font-bold">{games}</p>
         </div>
 
         {/* Rank */}
         <div className="bg-gray-300 rounded-xl shadow-lg ml-3 m-1 w-16 h-16 lg:w-30 lg:h-30 flex flex-col justify-center items-center">
           <p className="text-sm text-gray-800 text-center font-bold">Rank</p>
-          <p className="text-2xl text-gray-900 text-center font-bold">#3</p>
+          <p className="text-2xl text-gray-900 text-center font-bold">{rank}</p>
         </div>
       </div>
     </div>
