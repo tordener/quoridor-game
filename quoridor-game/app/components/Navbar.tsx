@@ -1,10 +1,40 @@
+'use client';
 import Link from 'next/link';
-import { cookies } from 'next/headers';
+import {useEffect, useState} from 'react';
+//import { cookies } from 'next/headers';
 import { verifyJwt } from '@/lib/jwt';
+import { useRouter } from 'next/navigation';
+import React from 'react';
+
+interface User {
+    username: string;
+    email?: string;
+}
 
 export default function Navbar() {
-  const cookie = cookies().get('session')?.value;
-  const user = cookie ? verifyJwt(cookie) : null;
+    const [user, setUser] = useState<User | null>(null);
+    const router = useRouter();
+
+    useEffect(() => {
+        async function fetchUser(){
+            const res = await fetch('/api/auth/me');
+            if(res.ok) {
+                const data = await res.json();
+                setUser(data.user);
+            } else {
+                setUser(null);
+            }
+        }
+        fetchUser();
+    }, []);
+
+    const handleLogout = async () => {
+        await fetch('/api/logout', {
+            method: 'POST',
+        });
+
+    router.push('/login');
+  }
 
   return (
     <div className="bg-gray-800 shadow-xl border-b-10 border-b-gray-700 w-full p-3 text-white">
@@ -37,12 +67,12 @@ export default function Navbar() {
                 </Link>
                 !
               </div>
-              <form action="/api/logout" method="POST">
-                <button type="submit" className="font-medium text-white hover:underline hover:text-cyan-300 flex items-center">
+              
+                <button onClick={handleLogout} type="submit" className="font-medium text-white hover:underline hover:text-cyan-300 flex items-center">
                   Logout
                   <span className="material-symbols-outlined relative top-[6px] ml-1">logout</span>
                 </button>
-              </form>
+              
               <div className="flex flex-col mx-auto w-full">
                 <Link className="text-right" href="/lobby">
                   Game Lobby

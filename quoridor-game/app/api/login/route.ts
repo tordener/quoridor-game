@@ -44,12 +44,12 @@ export async function POST(req: Request) {
 
         resp.cookies.set('session', token, {
             httpOnly: true,
-            maxAge: 60,
+            maxAge: 60 * 60,
             path: '/'
         });
 
         return resp;
-        
+
     } catch (error) {
         console.error('[LOGIN ERROR]', error);
         return NextResponse.json({error: 'Internal Server Error'}, {status: 500});

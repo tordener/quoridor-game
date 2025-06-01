@@ -1,27 +1,34 @@
 'use client';
 import { useState } from 'react';
-import { NextResponse } from 'next/server';
+import { useRouter } from 'next/navigation';
 
 export default function LoginWidget(){
+    const router = useRouter();
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
 
     const handleSubmit = async(e: React.FormEvent) => {
         e.preventDefault();
-        const res = await fetch('/api/login', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({username, password}),
-        });
-        const data = await res.json();
-        // if(res.ok) {
-        //     setMessage('Login successful');
-        // } else {
-        //     setMessage('Login failed');
-        // }
-    }
+        try {
+            const res = await fetch('/api/login', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({username, password}),
+            });
+            const data = await res.json();
+    
+            if(res.ok && data.user?.username){
+                router.push(`/profile/${data.user.username}`)
+            } else {
+                alert('login failed');
+            }
+        } catch (error) {
+            console.error('login error: ', error);
+            alert('an error occured');
+        }
+    };
     return (
         <>
         <form onSubmit={handleSubmit} className="bg-gray-700 m-1 rounded-xl shadow-xl p-3 lg:w-1/4  md:w-1/2 sm:w-full xs: w-full mx-auto text-white">
