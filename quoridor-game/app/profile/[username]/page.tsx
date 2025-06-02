@@ -21,7 +21,7 @@ interface ProfilePageProps {
 }
 
 export default async function ProfilePage({params} : ProfilePageProps) {
-  const {username} = params;
+  const {username} = await params;
   const profileData = await db
         .selectFrom('profiles')
         .innerJoin('users', 'users.username', 'profiles.username')
@@ -52,9 +52,11 @@ export default async function ProfilePage({params} : ProfilePageProps) {
     <div className="mx-auto flex flex-row w-full">
           <div className="w-full mb-1">
             <GameStats
-              rank={profileData.rank}
-              rating={profileData.elo}
               games={profileData.games}
+              rating={profileData.elo}
+              wins={profileData.wins}
+              losses={profileData.losses}
+              rank={profileData.rank}
             />
           </div>
     </div>

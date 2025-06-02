@@ -19,7 +19,7 @@ export default function GameHistory(){
             <div
               key={i}
               className={`m-1 rounded-sm p-2 font-bold text-white text-center text-[10px] sm:text-[16px] lg:text-[16px] ${
-                result === "win" ? "bg-green-700" : "bg-red-700"
+                result === "win" ? "bg-cyan-600" : "bg-red-700"
               }`}
             >
               <p>

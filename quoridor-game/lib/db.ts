@@ -23,12 +23,21 @@ export interface Database {
 		rank: number;
 		friends: number[]
 	}
+	notifications: {
+		id: number;
+		to_user: string;
+		from_user: string;
+		type: string;
+		message: string;
+		created_at: Date;
+		seen: boolean;
+	}
 }
 
 //export type InsertUser = Omit<Database['users'], 'id'>
 export type InsertUser = Insertable<Database['users']>
 
-const db = new Kysely<Database>({
+export const db = new Kysely<Database>({
 	dialect: new PostgresDialect({
 		pool: new Pool({
 			connectionString: process.env.DATABASE_URL,
