@@ -21,8 +21,10 @@ export async function POST(req: NextRequest) {
             return NextResponse.json({error: 'missing required fields'}, {status: 400});
         }
         const from_user = payload.username;
+        console.log('PAYLOAD FR: ------------------->', payload);
         const body = await req.json();
         const {notificationId, to_user, accept} = body;
+        console.log('BODY OF HTTP HEADER: ---------> ', from_user);
 
         if(!notificationId || accept === undefined) {
             return NextResponse.json({error: 'missing required fields after JWT'}, {status: 400});
@@ -32,11 +34,16 @@ export async function POST(req: NextRequest) {
             const inserted = await db
                 .updateTable('profiles')
                 .set({
-                    friends: sql`array_append(friends, ${from_user})`
+                    friends: sql`array_append(friends, ${body.from_user})`
                 })
-                .where('username', '=', to_user)
+                .where('username', '=', body.to_user)
                 .execute();
             return NextResponse.json({success: true});
+        } else {
+            const inserted = await db
+                .deleteFrom('notifications')
+                .where('id', '=', notificationId)
+                .execute();
         }
     } catch (error) {
         console.error('An error occured while trying to evaluate the friend request', error);

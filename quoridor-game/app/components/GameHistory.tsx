@@ -18,7 +18,7 @@ export default function GameHistory(){
           {games.map(({ opponent, result, time }, i) => (
             <div
               key={i}
-              className={`m-1 rounded-sm p-2 font-bold text-white text-center text-[10px] sm:text-[16px] lg:text-[16px] ${
+              className={`m-1 rounded-xl p-2 font-bold text-white text-center text-[10px] sm:text-[16px] lg:text-[16px] ${
                 result === "win" ? "bg-cyan-600" : "bg-red-700"
               }`}
             >

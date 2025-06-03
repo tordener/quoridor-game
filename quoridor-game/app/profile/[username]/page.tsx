@@ -45,11 +45,32 @@ export default async function ProfilePage({params} : ProfilePageProps) {
     )
   }
   return (
-<div className="flex flex-col min-h-screen bg-gray-800 text-white">
+<div className="flex flex-col min-h-screen bg-gradient-to-t from-cyan-700 to-gray-900 text-white">
   <Navbar />
 
   <main className="flex flex-col flex-grow w-full px-4 mt-3">
-    <div className="mx-auto flex flex-row w-full">
+    {/* <div className="flex flex-row w-full">
+          <div className="w-full mb-1">
+            <GameStats
+              games={profileData.games}
+              rating={profileData.elo}
+              wins={profileData.wins}
+              losses={profileData.losses}
+              rank={profileData.rank}
+              profileUsername={profileData.username}
+            />
+          </div>
+    </div> */}
+    <div className="flex flex-col lg:flex-row w-full max-w-7xl mx-auto gap-1">
+
+      {/* Left Column: Achievements */}
+      <div className="flex flex-col w-full lg:w-64 bg-gray-900 rounded-xl p-4 min-h-[400px]">
+        <div>
+          <ProfileName username={profileData.username} createdAt={profileData.created_at} />
+        </div>
+
+<hr className="text-cyan-800 mb-2 mt-2 "/>
+    <div className="flex flex-row w-full">
           <div className="w-full mb-1">
             <GameStats
               games={profileData.games}
@@ -61,14 +82,10 @@ export default async function ProfilePage({params} : ProfilePageProps) {
             />
           </div>
     </div>
-    <div className="flex flex-col lg:flex-row w-full max-w-7xl mx-auto gap-4">
 
-      {/* Left Column: Achievements */}
-      <div className="flex flex-col w-full lg:w-full bg-gray-900 rounded-xl p-4 min-h-[400px]">
-        <div>
-          <ProfileName username={profileData.username} createdAt={profileData.created_at} />
-        </div>
-        <div className="text-lg font-bold text-center mb-4 bg-gray-800 rounded-full px-4 py-2">
+<hr className="text-cyan-800 mb-2 mt-2 "/>
+
+        <div className="text-lg font-bold text-center mb-4 bg-gray-800 size-30 mx-auto rounded-full px-4 py-5">
           <p>Awards</p>
           <span className="material-symbols-outlined text-cyan-200" style={{ fontSize: '50px' }}>
             military_tech
@@ -87,24 +104,20 @@ export default async function ProfilePage({params} : ProfilePageProps) {
             <span className="material-symbols-outlined text-cyan-200" style={{ fontSize: '50px' }}>
               crowdsource
             </span>
+          
+          </div>
+        </div>
+        <div className="mx-auto gap-4">
+          <div className="flex-grow">
+            <FriendsWidget username={profileData.username}/>
           </div>
         </div>
       </div>
 
-      {/* Middle Column: Username on top, Friends below */}
-      <div className="flex flex-col w-full mx-auto gap-4">
-        <div className="flex-grow">
-          <FriendsWidget username={profileData.username}/>
-        </div>
-      </div>
 
-      {/* Right Column: GameStats + GameHistory */}
-      <div className="flex flex-row  w-full flex-grow gap-4 min-h-[400px]">
+      <div className="flex flex-row  w-full mx-auto flex-grow gap-4 min-h-[400px]">
         <div className="flex flex-col sm:flex-row w-full h-full gap-4">
-          {/* Game Stats on the left even in mobile */}
- 
 
-          {/* Game History fills remaining space */}
           <div className="flex-grow w-full">
             <GameHistory />
           </div>

@@ -70,8 +70,15 @@ export async function GET(req: NextRequest) {
             .selectFrom('notifications')
             .selectAll()
             .where('to_user', '=', username)
+            .where('seen','=', false)
+            .where('status', '=', 'pending')
             .orderBy('created_at', 'desc')
             .execute();
+            // .selectFrom('notifications')
+            // .selectAll()
+            // .where('to_user', '=', username)
+            // .orderBy('created_at', 'desc')
+            // .execute();
         
         return NextResponse.json(notifications);
     } catch (error) {

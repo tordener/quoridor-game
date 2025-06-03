@@ -169,7 +169,7 @@ export default function Navbar() {
   }
 
   return (
-    <div className="bg-gray-800 shadow-xl border-b-10 border-b-gray-700 w-full p-3 text-white">
+    <div className="bg-gradient-to-b from-gray-800 to-gray-900 shadow-xl border-b-10 border-b-gray-700 w-full p-3 text-white">
       <div className="flex justify-between items-center">
         <div className="mx-auto">
           <div className="py-6 px-4 sm:px-8 flex items-center justify-between">
