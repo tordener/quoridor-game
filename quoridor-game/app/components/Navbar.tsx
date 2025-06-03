@@ -193,28 +193,32 @@ export default function Navbar() {
           {user ? (
             <>
               <div className="flex flex-row text-left right-2 relative top-2">
-                <div>
+                
+                <div className="relative -top-3">
+                  <div>
+                    <p className="relative top-3">Welcome,</p>
+                  </div>
                   <Link href={`/profile/${user.username}`} className="mx-auto text-cyan-300 text-lg font-bold hover:underline hover:text-cyan-300">
                     {user.username}
                   </Link>
                 </div>
                 <div
                   onClick={toggleDropdown}
-                  className="relative rounded-full size-10 bg-cyan-300 ml-1 h-7 w-7 mx-auto focus:outline-none"
+                  className="relative rounded-full size-10 bg-cyan-900 ml-1 mx-auto focus:outline-none"
                   aria-label="Toggle notifications"
                 >
-                  <span className="material-symbols-outlined text-cyan-700 animate-bounce" style={{ fontSize: '30px' }}>
+                  <span className="material-symbols-outlined text-cyan-300 relative -right-1.5 top-1" style={{ fontSize:'30px' }}>
                     notifications
                   </span>
                   
                   {unseenCount > 0 && (
-                    <span className="absolute -top-2 -right-2 inline-flex items-center justify-center px-1.5 py-0.5 text-xs font-bold leading-none text-white bg-red-600 rounded-full">
+                    <span className="absolute -top-1 size-5 -right-1 inline-flex items-center justify-center px-1.5 py-0.5 text-xs font-bold leading-none text-white bg-red-600 rounded-full">
                       {unseenCount}
                     </span>
                   )}
 
                   {dropdownOpen && (
-                    <div className="absolute shadow-lg right-0 top-5.25 mt-2 w-80 max-h-[450px] overflow-y-auto bg-gray-900 rounded-lg shadow-lg border border-gray-700 z-50">
+                    <div className="absolute shadow-lg  text-center right-0 top-5.25mt-2 w-80 max-h-[450px] overflow-y-auto bg-gray-900 rounded-lg shadow-lg border border-gray-700 z-50">
                       {notifications.length === 0 ? (
                         <div className="p-4 text-center text-gray-400">No notifications</div>
                       ) : (
@@ -246,10 +250,10 @@ export default function Navbar() {
               
               <div className="flex flex-row mt-3 mx-auto w-full">
               
-                <button onClick={handleLogout} type="submit" className="font-medium mx-auto size-10 bg-gray-800 pr-2 pl-2 pt-1 pb-1 rounded-full border-1 border-gray-600 text-white hover:underline hover:text-cyan-300 flex items-center">
+                <button onClick={handleLogout} type="submit" className="font-medium mx-auto size-10 -mt-5 bg-gray-800 pr-2 pl-2 pt-1 pb-1 rounded-full border-1 border-gray-600 text-white hover:underline hover:text-cyan-300 flex items-center">
                   <span className="material-symbols-outlined mx-auto mt-2 relative top-[-4px] right-1 ml-1">logout</span>
                 </button>
-                <Link className="text-right mx-auto bg-gray-800 border-1 size-10 border-gray-700 rounded-full pr-3 pl-3" href="/lobby">
+                <Link className="text-right mx-auto bg-gray-800 border-1 size-10 border-gray-700 rounded-full -mt-5 pr-3 pl-3" href="/lobby">
                   <span className="material-symbols-outlined relative right-1 top-1.5">
                   stadia_controller
                   </span>

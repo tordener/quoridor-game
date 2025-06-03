@@ -1,16 +1,16 @@
 export default function LeaderBoard(){
     return (
-                    <div className="p-2">
-                        <p className="text-white font-bold text-2xl">Standings</p>
+                    <div className="p-10 bg-gray-900 rounded-xl">
+                        <p className="text-white text-center font-bold text-2xl">Standings</p>
                          <ul className="max-w-md divide-y divide-gray-200 dark:divide-gray-700">
                              <li className="pb-3 sm:pb-4">
                                  <div className="flex items-center space-x-4 rtl:space-x-reverse">
                                      <div className="shrink-0">
-                                         <p className="text-5xl text-yellow-400">1st</p>
-                                         <span className="material-symbols-outlined text-3xl text-yellow-600 pl-3" style={{fontSize: "50px"}}>trophy</span>
+                                         <p className="text-5xl text-cyan-400">1st</p>
+                                         <span className="material-symbols-outlined text-3xl text-cyan-600 pl-3" style={{fontSize: "50px"}}>trophy</span>
                                      </div>
                                      <div className="flex-1 min-w-0">
-                                         <p className="font-medium text-5xl text-gray-900 truncate dark:text-white">
+                                         <p className="font-medium text-2xl lg:text-5xl text-gray-900 truncate dark:text-white">
                                          EliteGamer
                                          </p>
                                          <p className="text-sm text-gray-500 truncate dark:text-gray-400">

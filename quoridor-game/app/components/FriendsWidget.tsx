@@ -27,7 +27,7 @@ export default function FriendsWidget({username} : FriendsWidgetProps){
     }, [username]);
 
   return (
-    <div className="bg-opacity-50 bg-cyan-700 rounded-xl text-white p-5 w-[225px] h-[525px]">
+    <div className="bg-opacity-50 bg-cyan-700 rounded-xl text-white p-5 w-[225px] h-[515px]">
       <div className="text-center text-xl font-bold">
         <p className="p-3">Friends ({friends.length})</p>
         <hr className="text-cyan-900 mb-3" />

@@ -8,7 +8,7 @@ export default function Login(){
       <Navbar />
 
 
-      <div className="flex-grow flex flex-col items-center justify-center">
+      <div className="flex flex-col min-h-screen bg-gradient-to-t from-cyan-700 to-gray-900 text-white items-center justify-center">
         <LoginWidget />
       </div>
 
