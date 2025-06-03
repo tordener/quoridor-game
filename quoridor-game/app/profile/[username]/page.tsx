@@ -45,7 +45,7 @@ export default async function ProfilePage({params} : ProfilePageProps) {
     )
   }
   return (
-<div className="flex flex-col min-h-screen bg-gradient-to-t from-cyan-700 to-gray-900 text-white">
+<div className="flex sticky z-50  top-0 flex-col min-h-screen bg-gradient-to-t from-cyan-700 to-gray-900 text-white">
   <Navbar />
 
   <main className="flex flex-col flex-grow w-full px-4 mt-3">

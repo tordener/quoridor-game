@@ -169,30 +169,30 @@ export default function Navbar() {
   }
 
   return (
-    <div className="bg-transparent shadow-xl border-b-3 border-b-gray-900 w-full p-3 text-white">
-      <div className="flex justify-between items-center">
+    <div className="bg-gray-900 sticky z-50  top-0 shadow-xl border-b-3 border-b-gray-900 w-full p-3 text-white h-27">
+      <div className="flex justify-between items-center sticky z-50 ">
         <div className="mx-auto">
-          <div className="py-6 px-4 sm:px-8 flex items-center justify-between">
+          <div className="pb-1 px-4 sm:px-8 flex items-center justify-between">
             <div className="flex items-center space-x-4">
-              <div className="text-orange-400 text-3xl font-bold tracking-tight">
+              {/* <div className="text-orange-400 text-3xl font-bold tracking-tight">
                 <span className="text-cyan-400 material-symbols-outlined relative top-3" style={{ fontSize: "4rem" }}>
                   grid_goldenratio
                 </span>
-              </div>
+              </div> */}
               <div>
-                <h1 className="text-white text-3xl sm:text-5xl font-semibold leading-tight">
-                  Qu<span className="animate-pulse text-white">o</span>rid<span className="text-cyan-900 animate-pulse">o</span>r
+                <h1 className="text-cyan-300 text-3xl sm:text-5xl font-semibold leading-tight">
+                  quuro
                 </h1>
-                <p className="text-cyan-400 text-xs sm:text-base">A TypeScript Implementation</p>
+                <p className="text-cyan-400 text-xs sm:text-base">A TypeScript Implementation of Quoridor</p>
               </div>
             </div>
           </div>
         </div>
 
-        <div className="text-center space-y-2">
+        <div className="flex flex-col mx-auto text-center space-y-2">
           {user ? (
             <>
-              <div className="flex flex-row relative top-2">
+              <div className="flex flex-row text-left right-2 relative top-2">
                 <div>
                   <Link href={`/profile/${user.username}`} className="mx-auto text-cyan-300 text-lg font-bold hover:underline hover:text-cyan-300">
                     {user.username}
@@ -200,7 +200,7 @@ export default function Navbar() {
                 </div>
                 <div
                   onClick={toggleDropdown}
-                  className="relative rounded-full bg-cyan-300 ml-1 h-7 w-7 mx-auto focus:outline-none"
+                  className="relative rounded-full size-10 bg-cyan-300 ml-1 h-7 w-7 mx-auto focus:outline-none"
                   aria-label="Toggle notifications"
                 >
                   <span className="material-symbols-outlined text-cyan-700 animate-bounce" style={{ fontSize: '30px' }}>
@@ -244,15 +244,16 @@ export default function Navbar() {
 
               </div>
               
-              <div className="flex flex-col mx-auto w-full">
-                <Link className="text-right mx-auto" href="/lobby">
-                  Game Lobby
-                </Link>
+              <div className="flex flex-row mt-3 mx-auto w-full">
               
-                <button onClick={handleLogout} type="submit" className="font-medium mx-auto text-white hover:underline hover:text-cyan-300 flex items-center">
-                  Logout
-                  <span className="material-symbols-outlined mx-auto mt-2 relative top-[-4px] ml-1">logout</span>
+                <button onClick={handleLogout} type="submit" className="font-medium mx-auto size-10 bg-gray-800 pr-2 pl-2 pt-1 pb-1 rounded-full border-1 border-gray-600 text-white hover:underline hover:text-cyan-300 flex items-center">
+                  <span className="material-symbols-outlined mx-auto mt-2 relative top-[-4px] right-1 ml-1">logout</span>
                 </button>
+                <Link className="text-right mx-auto bg-gray-800 border-1 size-10 border-gray-700 rounded-full pr-3 pl-3" href="/lobby">
+                  <span className="material-symbols-outlined relative right-1 top-1.5">
+                  stadia_controller
+                  </span>
+                </Link>
               </div>
             </>
           ) : (
