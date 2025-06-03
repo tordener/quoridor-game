@@ -12,13 +12,14 @@ interface GameStatsProps {
     wins: number;
     losses: number;
     rank: number;
+    profileUsername: string;
 }
 
 
 
 
 
-export default function GameStats({rating, games, wins, losses, rank} : GameStatsProps){
+export default function GameStats({rating, games, wins, losses, rank, profileUsername} : GameStatsProps){
   
     const [user, setUser] = useState<User | null>(null);
     useEffect(() => {
@@ -33,6 +34,57 @@ export default function GameStats({rating, games, wins, losses, rank} : GameStat
       }
       fetchUser();
     }, []);
+
+    const handleChallengePlayer = async () => {
+      try {
+        const res = await fetch('/api/notifications', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          credentials: 'include',
+          body: JSON.stringify({
+            type: 'challenge',
+            to_user: profileUsername,
+            //from_user: user?.username,
+            message: 'turds',
+          }),
+        });
+
+        if(res.ok) {
+          console.log('notification sent');
+        } else {
+          console.error('failed to send notification');
+        }
+      } catch (error) {
+        console.error('Error sending notification', error);
+      }
+    }
+
+    const handleSendFriendRequest = async () => {
+      try {
+        const res = await fetch('/api/notifications', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          credentials: 'include',
+          body: JSON.stringify({
+            type: 'friend_request',
+            to_user: profileUsername,
+            message: 'turds',
+          }),
+        });
+
+        if(res.ok) {
+          console.log('notification sent');
+        } else {
+          console.error('failed to send notification');
+        }
+      } catch (error) {
+        console.error('Error sending notification', error);
+      }
+    }
     return (
     <div className="flex flex-row w-full justify-center flex-wrap h-full">
         {user && (
@@ -40,6 +92,7 @@ export default function GameStats({rating, games, wins, losses, rank} : GameStat
           <div className="relative  w-20 rounded-br-xl rounded-bl-xl border-gray-100 text-white font-bold">
             <button
               type="button"
+              onClick={handleSendFriendRequest}
               className="text-white ml-3 relative top-1 text-3xl w-16 h-16  lg:w-16 lg:h-16 bg-white border border-gray-300 mb-1 focus:outline-none hover:bg-gray-100 focus:ring-4 focus:ring-gray-100 font-medium rounded-xl px-5 py-2.5 dark:bg-cyan-400 dark:text-white dark:border-gray-600 dark:hover:bg-gray-700 dark:hover:border-gray-600 dark:focus:ring-gray-700"
             >
               <span className="material-symbols-outlined text-[25px] sm:text-[50px] md:text-[50px] lg:text-[50px]">
@@ -49,6 +102,7 @@ export default function GameStats({rating, games, wins, losses, rank} : GameStat
             </div>
             <button
               type="button"
+              onClick={handleChallengePlayer}
               className="text-white ml-3 text-3xl relative top-1 w-16 h-16  lg:w-16 lg:h-16 bg-white border border-gray-300 focus:outline-none hover:bg-gray-100 focus:ring-4 focus:ring-gray-100 font-medium rounded-xl px-5 py-2.5 dark:bg-red-400 dark:text-white dark:border-gray-600 dark:hover:bg-gray-700 dark:hover:border-gray-600 dark:focus:ring-gray-700"
             >
               <span className="material-symbols-outlined text-[25px] sm:text-[50px] md:text-[50px] lg:text-[50px]">

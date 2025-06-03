@@ -20,7 +20,40 @@ type NotificationResponse = {
   created_at: Date;
 }
 
-function getNotificationIcon(type: string){
+
+async function handleFr(notif_id: number, from_user: string, to_user: string, action: boolean){
+  console.log(`${notif_id}, ${from_user}, ${to_user}, ${action}`);
+  const resp = await fetch('/api/friendRequest', {
+    method: 'POST',
+    headers: {'Content-Type': 'application/json'},
+    credentials: 'include',
+    body: JSON.stringify({notificationId: notif_id, accept: action, from_user, to_user})
+  });
+
+  if(resp.ok){
+    console.log('FR action completed')
+  } else {
+    console.log('FR action could not be completed');
+  }
+}
+
+async function handleChallengeReq(notif_id: number, from_user: string, to_user: string, action: boolean){
+  const resp = await fetch('/api/challengeRequest', {
+    method: 'POST',
+    headers: {'Content-Type': 'application/json'},
+    credentials: 'include',
+    body: JSON.stringify({notificationId: notif_id, accept: action, from_user, to_user})
+  });
+
+  if(resp.ok){
+    console.log('FR action completed')
+  } else {
+    console.log('FR action could not be completed');
+  }
+}
+
+
+function getNotificationIcon(type: string, from_user: string, to_user: string, notif_id: number){
   switch (type) {
     case 'alert' :
       return <span className="material-symbols-outlined text-cyan-700" style={{ fontSize: '30px' }}>info</span>
@@ -32,12 +65,14 @@ function getNotificationIcon(type: string){
           <span className="material-symbols-outlined text-cyan-700" style={{ fontSize: '30px' }}>swords</span><br />
               <button
                 type="button"
+                onClick={()=> {handleChallengeReq(notif_id, from_user, to_user, true)}}
                 className="text-white relative m-1 text-3xl w-10 h-10  lg:w-10 lg:h-10 bg-white border border-gray-300 mb-1 focus:outline-none hover:bg-gray-100 focus:ring-4 focus:ring-gray-100 font-medium rounded-xl px-5 py-2.5 dark:bg-cyan-400 dark:text-white dark:border-gray-600 dark:hover:bg-gray-700 dark:hover:border-gray-600 dark:focus:ring-gray-700"
             ><span className="material-symbols-outlined relative -top-2 right-3 text-[25px] sm:text-[50px] md:text-[50px] lg:text-[50px]">
             check
           </span></button>
                         <button
                 type="button"
+                onClick={()=> {handleChallengeReq(notif_id, from_user, to_user, false)}}
                 className="text-white relative m-1 text-3xl w-10 h-10  lg:w-10 lg:h-10 bg-white border border-gray-300 mb-1 focus:outline-none hover:bg-gray-100 focus:ring-4 focus:ring-gray-100 font-medium rounded-xl px-5 py-2.5 dark:bg-red-400 dark:text-white dark:border-gray-600 dark:hover:bg-gray-700 dark:hover:border-gray-600 dark:focus:ring-gray-700"
             ><span className="material-symbols-outlined relative -top-2 right-3 text-[25px] sm:text-[50px] md:text-[50px] lg:text-[50px]">
             block
@@ -50,12 +85,14 @@ function getNotificationIcon(type: string){
         <span className="material-symbols-outlined text-cyan-700" style={{ fontSize: '30px' }}>person_add</span><br />
                       <button
                 type="button"
+                onClick={()=> {handleFr(notif_id, from_user, to_user, true)}}
                 className="text-white relative m-1 text-3xl w-10 h-10  lg:w-10 lg:h-10 bg-white border border-gray-300 mb-1 focus:outline-none hover:bg-gray-100 focus:ring-4 focus:ring-gray-100 font-medium rounded-xl px-5 py-2.5 dark:bg-cyan-400 dark:text-white dark:border-gray-600 dark:hover:bg-gray-700 dark:hover:border-gray-600 dark:focus:ring-gray-700"
             ><span className="material-symbols-outlined relative -top-2 right-3 text-[25px] sm:text-[50px] md:text-[50px] lg:text-[50px]">
             check
           </span></button>
                         <button
                 type="button"
+                onClick={()=> {handleFr(notif_id, from_user, to_user, false)}}
                 className="text-white relative m-1 text-3xl w-10 h-10  lg:w-10 lg:h-10 bg-white border border-gray-300 mb-1 focus:outline-none hover:bg-gray-100 focus:ring-4 focus:ring-gray-100 font-medium rounded-xl px-5 py-2.5 dark:bg-red-400 dark:text-white dark:border-gray-600 dark:hover:bg-gray-700 dark:hover:border-gray-600 dark:focus:ring-gray-700"
             ><span className="material-symbols-outlined relative -top-2 right-3 text-[25px] sm:text-[50px] md:text-[50px] lg:text-[50px]">
             block
@@ -152,7 +189,7 @@ export default function Navbar() {
           </div>
         </div>
 
-        <div className="text-right space-y-2">
+        <div className="text-center space-y-2">
           {user ? (
             <>
               <div className="flex flex-row relative top-2">
@@ -161,9 +198,9 @@ export default function Navbar() {
                     {user.username}
                   </Link>
                 </div>
-                <button
+                <div
                   onClick={toggleDropdown}
-                  className="relative rounded-full bg-cyan-300 ml-1 h-7 w-7 flex items-center justify-center focus:outline-none"
+                  className="relative rounded-full bg-cyan-300 ml-1 h-7 w-7 mx-auto focus:outline-none"
                   aria-label="Toggle notifications"
                 >
                   <span className="material-symbols-outlined text-cyan-700 animate-bounce" style={{ fontSize: '30px' }}>
@@ -184,16 +221,26 @@ export default function Navbar() {
                         notifications.map((notif) => (
                           <div key={notif.id} className="px-4 py-3 border-b border-gray-700 last:border-b-0 hover:bg-gray-800 cursor-pointer">
                             {/* <p className="font-semibold text-cyan-300">{notif.type}</p> */}
-                            <p className="font-semibold text-cyan-300">{notif.from_user}</p>
-                            {getNotificationIcon(notif.type)}
-                            <p className="text-sm text-gray-300">{notif.message}</p>
-                            <p className="text-xs text-gray-500">{new Date(notif.created_at).toLocaleString()}</p>
+                            <Link href={`/profile/${notif.from_user}`} className="font-semibold text-cyan-300">
+                            {notif.from_user}
+                            </Link> <br />
+                            {/* <p className="font-semibold text-cyan-300">{notif.from_user}</p> */}
+                            {getNotificationIcon(notif.type, notif.from_user, notif.to_user, notif.id)}
+                            {notif.type === 'challenge' || notif.type === 'friend_request' ? (
+                              <p className="text-xs text-gray-500">{new Date(notif.created_at).toLocaleString()}</p>
+                            ) : (
+                            <>
+                              <p className="text-sm text-gray-300">{notif.message}</p>
+                              <p className="text-xs text-gray-500">{new Date(notif.created_at).toLocaleString()}</p>
+                            </>
+
+                            )}
                           </div>
                         ))
                       )}
                     </div>
                   )}
-                </button>
+                </div>
 
               </div>
               

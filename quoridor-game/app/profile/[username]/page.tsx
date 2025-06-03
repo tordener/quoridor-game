@@ -57,6 +57,7 @@ export default async function ProfilePage({params} : ProfilePageProps) {
               wins={profileData.wins}
               losses={profileData.losses}
               rank={profileData.rank}
+              profileUsername={profileData.username}
             />
           </div>
     </div>
@@ -93,7 +94,7 @@ export default async function ProfilePage({params} : ProfilePageProps) {
       {/* Middle Column: Username on top, Friends below */}
       <div className="flex flex-col w-full mx-auto gap-4">
         <div className="flex-grow">
-          <FriendsWidget />
+          <FriendsWidget username={profileData.username}/>
         </div>
       </div>
 

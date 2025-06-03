@@ -11,7 +11,7 @@ export interface Database {
 		password: string;
 		verified: boolean;
 		verification_code: string;
-		created_at: string | Date;
+		created_at?: string | Date;
 	};
 	profiles: {
 		id: number;
@@ -29,8 +29,9 @@ export interface Database {
 		from_user: string;
 		type: string;
 		message: string;
-		created_at: Date;
+		created_at?: Date;
 		seen: boolean;
+		status: string;
 	}
 }
 
