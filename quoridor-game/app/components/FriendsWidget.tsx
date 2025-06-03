@@ -30,6 +30,7 @@ export default function FriendsWidget({username} : FriendsWidgetProps){
     <div className="bg-opacity-50 bg-cyan-700 rounded-xl text-white p-5 w-[225px] h-[525px]">
       <div className="text-center text-xl font-bold">
         <p className="p-3">Friends ({friends.length})</p>
+        <hr className="text-cyan-900 mb-3" />
       </div>
 
       <div className="h-[425px] overflow-y-auto pr-3">
@@ -41,7 +42,7 @@ export default function FriendsWidget({username} : FriendsWidgetProps){
           <ul className="space-y-3">
             {friends.map((friend, idx) => (
               <li key={idx}>
-                <div className="flex justify-between items-center">
+                <div className="flex justify-between items-center pr-2 pl-2  rounded-xl bg-cyan-900">
                   <a
                     href={`/profile/${friend}`}
                     className="text-cyan-300 text-sm font-bold hover:underline"

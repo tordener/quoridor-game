@@ -115,12 +115,19 @@ export default async function ProfilePage({params} : ProfilePageProps) {
       </div>
 
 
-      <div className="flex flex-row  w-full mx-auto flex-grow gap-4 min-h-[400px]">
+      <div className="flex flex-col  w-full mx-auto flex-grow gap-4 min-h-[400px]">
         <div className="flex flex-col sm:flex-row w-full h-full gap-4">
 
           <div className="flex-grow w-full">
             <GameHistory />
           </div>
+
+          <div className="flex-grow w-full">
+            <GameHistory />
+          </div>
+        </div>
+        <div className="flex-grow w-full relative -top-70">
+            <GameHistory />
         </div>
       </div>
     </div>

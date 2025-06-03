@@ -31,12 +31,42 @@ export async function POST(req: NextRequest) {
         }
 
         if(accept === true) {
+
+            const result = await db
+                .selectFrom('profiles')
+                .select('id')
+                .where(({eb}) =>
+                    sql`${body.to_user} = ANY(friends)`
+                )
+                .limit(1)
+                .executeTakeFirst();
+
+            const alreadyFriends = !!result;
+
+            if(alreadyFriends){
+                console.error({error: 'already friends'});
+                return NextResponse.json({error: 'user is already in friendslist'}, {status: 400});
+            }
+
             const inserted = await db
                 .updateTable('profiles')
                 .set({
                     friends: sql`array_append(friends, ${body.from_user})`
                 })
                 .where('username', '=', body.to_user)
+                .execute();
+            
+            const insertOther = await db
+                .updateTable('profiles')
+                .set({
+                    friends: sql`array_append(friends, ${body.to_user})`
+                })
+                .where('username', '=', body.from_user)
+                .execute();
+            
+            const removed = await db
+                .deleteFrom('notifications')
+                .where('id', '=', notificationId)
                 .execute();
             return NextResponse.json({success: true});
         } else {

@@ -26,6 +26,21 @@ export async function POST(req: NextRequest) {
             return NextResponse.json({error: 'missing fields'}, {status: 400});
         } 
 
+        const exists = await db
+            .selectFrom('notifications')
+            .select('id')
+            .where('type', '=', type)
+            .where('from_user', '=', from_user)
+            .limit(1)
+            .executeTakeFirst();
+
+        const alreadyExists = !!exists;
+
+        if(alreadyExists){
+            console.error({error: 'User has already sent this notification'});
+            return NextResponse.json({error: 'already sent request'}, {status: 400});
+        }
+
         const inserted = await db
             .insertInto('notifications')
             .values({

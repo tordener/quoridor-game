@@ -10,6 +10,10 @@ export default function GameHistory(){
         { opponent: "John Carmack", result: "loss", time: "June 16, 2027" },
         { opponent: "William Henry Gates III", result: "win", time: "2 days ago" },
         { opponent: "William Henry Gates III", result: "win", time: "2 days ago" },
+        { opponent: "William Henry Gates III", result: "win", time: "2 days ago" },
+        { opponent: "John Carmack", result: "loss", time: "June 16, 2027" },
+        { opponent: "William Henry Gates III", result: "win", time: "2 days ago" },
+        { opponent: "John Carmack", result: "loss", time: "June 16, 2027" },
     ];
     return (
         <div className="flex flex-col w-full lg:flex-1 bg-gray-900 p-4 m-1 rounded-xl shadow">
